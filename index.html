@@ -1,83 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VORTEKS Supplements</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #111;
-      color: #fdfdfd;
-    }
-    header {
-      background-color: #000;
-      padding: 1rem;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-    }
-    .section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 3rem 1rem;
-      border-bottom: 1px solid #333;
-    }
-    .section img {
-      max-width: 90%;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-    }
-    .section h2 {
-      margin-top: 1.5rem;
-      font-size: 1.8rem;
-      color: #f33;
-    }
-    .section p {
-      max-width: 700px;
-      text-align: center;
-      font-size: 1rem;
-      color: #ccc;
-    }
-    footer {
-      background-color: #000;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #888;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VORTEꓘS - Suplementos Futuristas</title>
+  <link rel="icon" href="images/logo.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>VORTEKS SUPPLEMENTS</header>
+<body class="bg-black text-gray-100 font-sans">
+  <!-- Encabezado -->
+  <header class="flex items-center justify-between p-6 border-b border-gray-800 bg-black">
+    <div class="flex items-center">
+      <img src="images/logo.png" alt="Logo" class="h-12 w-12 mr-3">
+      <h1 class="text-3xl font-bold text-yellow-400">VORTEꓘS</h1>
+    </div>
+  </header>
 
-  <div class="section">
-    <img src="/path/to/BCAA.png" alt="BCAA T-shirt Design">
-    <h2>BCAA – POTENCIA AVIARES</h2>
-    <p>Diseño inspirado en la fuerza del águila. Perfecto para quienes buscan rendimiento explosivo y recuperación rápida.</p>
-  </div>
+  <!-- Descripción -->
+  <section class="p-8 text-center max-w-3xl mx-auto">
+    <h2 class="text-4xl font-bold text-yellow-400 mb-4">Suplementos en Forma de Gomitas</h2>
+    <p class="text-gray-300">Desata tu verdadero potencial con nuestros productos de última generación diseñados para deportistas extremos y quienes se están iniciando.</p>
+  </section>
 
-  <div class="section">
-    <img src="/path/to/CREATINE.png" alt="Creatine T-shirt Design">
-    <h2>CREATINA – VENENO DE PODER</h2>
-    <p>Con una cobra musculosa, esta camiseta representa fuerza imparable y determinación pura. Ideal para entrenamientos intensos.</p>
-  </div>
+  <!-- Productos -->
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 max-w-6xl mx-auto">
+    <!-- Proteína -->
+    <div class="bg-gray-900 rounded-xl p-6 shadow-xl border border-gray-700 hover:scale-105 transition">
+      <img src="images/PROTEINA.png" alt="Proteína" class="w-full rounded mb-4">
+      <h3 class="text-xl text-yellow-400 font-semibold mb-2">Proteína en Gomitas</h3>
+      <p class="text-gray-400">Recuperación muscular y aporte proteico ideal para antes o después del entrenamiento.</p>
+    </div>
 
-  <div class="section">
-    <img src="/path/to/PRE%20ENTRENO.png" alt="Preentreno T-shirt Design">
-    <h2>PREENTRENO – FUEGO INTERIOR</h2>
-    <p>Con un dragón que escupe fuego, este diseño captura la energía cruda que necesitas antes de cada entrenamiento.</p>
-  </div>
+    <!-- Creatina -->
+    <div class="bg-gray-900 rounded-xl p-6 shadow-xl border border-gray-700 hover:scale-105 transition">
+      <img src="images/CREATINE.png" alt="Creatina" class="w-full rounded mb-4">
+      <h3 class="text-xl text-yellow-400 font-semibold mb-2">Creatina</h3>
+      <p class="text-gray-400">Impulsa tu fuerza, potencia y rendimiento con microdosis de alta eficiencia.</p>
+    </div>
 
-  <div class="section">
-    <img src="/path/to/PROTEINA.png" alt="Proteina T-shirt Design">
-    <h2>PROTEÍNA – FURIA BESTIAL</h2>
-    <p>El hombre lobo encarnando el poder salvaje para construir músculo y resistencia. Imposible pasar desapercibido.</p>
-  </div>
+    <!-- Pre Entreno -->
+    <div class="bg-gray-900 rounded-xl p-6 shadow-xl border border-gray-700 hover:scale-105 transition">
+      <img src="images/PRE ENTRENO.png" alt="Pre Entreno" class="w-full rounded mb-4">
+      <h3 class="text-xl text-yellow-400 font-semibold mb-2">Pre Entreno</h3>
+      <p class="text-gray-400">Activa tu mente y cuerpo con energía explosiva antes de cada sesión.</p>
+    </div>
 
-  <footer>© 2025 VORTEKS. Todos los derechos reservados.</footer>
+    <!-- BCAA -->
+    <div class="bg-gray-900 rounded-xl p-6 shadow-xl border border-gray-700 hover:scale-105 transition">
+      <img src="images/BCAA.png" alt="BCAA" class="w-full rounded mb-4">
+      <h3 class="text-xl text-yellow-400 font-semibold mb-2">BCAA</h3>
+      <p class="text-gray-400">Aminoácidos esenciales que protegen tus músculos durante y después del ejercicio.</p>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="bg-gray-950 p-8 text-center">
+    <h2 class="text-3xl text-yellow-400 font-bold mb-6">Lo que dicen nuestros clientes</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <blockquote class="text-gray-300 border-l-4 border-yellow-400 pl-4">"Desde que uso la creatina en gomitas siento más fuerza en el gym. ¡Son brutales!" - Andrés R.</blockquote>
+      <blockquote class="text-gray-300 border-l-4 border-yellow-400 pl-4">"El sabor y la facilidad de uso son increíbles. Me encanta la proteína VORTEꓘS." - Laura M.</blockquote>
+      <blockquote class="text-gray-300 border-l-4 border-yellow-400 pl-4">"Excelente producto, el pre entreno me da un boost tremendo sin malestar." - Felipe G.</blockquote>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="p-8 bg-black border-t border-gray-800">
+    <h2 class="text-2xl font-bold text-yellow-400 mb-4">¿Tienes dudas o quieres hacer un pedido?</h2>
+    <p class="text-gray-400">Muy pronto habilitaremos nuestra línea de WhatsApp. También puedes escribirnos aquí:</p>
+    <form class="mt-4 max-w-xl">
+      <input type="text" placeholder="Nombre" class="w-full p-2 mb-2 bg-gray-800 border border-gray-600 rounded text-white">
+      <input type="email" placeholder="Correo" class="w-full p-2 mb-2 bg-gray-800 border border-gray-600 rounded text-white">
+      <textarea placeholder="Mensaje" class="w-full p-2 mb-2 bg-gray-800 border border-gray-600 rounded text-white"></textarea>
+      <button class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-4 py-2 rounded">Enviar</button>
+    </form>
+  </section>
+
+  <!-- Botón WhatsApp (sin número aún) -->
+  <a href="#" class="fixed bottom-4 right-4 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10c0 6.627 5.373 12 12 12s12-5.373 12-12S21.627-2 15 2c-4.905 0-9 4.095-9 9z" />
+    </svg>
+  </a>
+
 </body>
 </html>
