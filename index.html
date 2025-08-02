@@ -7,51 +7,47 @@
   <link rel="icon" type="image/png" href="LOGO.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    // Funciones básicas para el carrito
     let carrito = [];
 
     function agregarAlCarrito(nombre, precio) {
       const existente = carrito.find(item => item.nombre === nombre);
       if (existente) {
-        existente.cantidad++;
+        existente.cantidad += 1;
       } else {
         carrito.push({ nombre, precio, cantidad: 1 });
       }
       actualizarCarrito();
     }
 
-    function cambiarCantidad(nombre, cantidad) {
-      const producto = carrito.find(item => item.nombre === nombre);
-      if (producto) {
-        producto.cantidad += cantidad;
-        if (producto.cantidad <= 0) {
-          carrito = carrito.filter(item => item.nombre !== nombre);
-        }
-        actualizarCarrito();
-      }
-    }
-
     function actualizarCarrito() {
       const carritoDiv = document.getElementById('carrito-items');
       carritoDiv.innerHTML = '';
       let total = 0;
-      carrito.forEach(item => {
+      carrito.forEach((item, index) => {
         total += item.precio * item.cantidad;
         const div = document.createElement('div');
-        div.className = 'flex justify-between items-center border-b border-gray-700 py-2';
+        div.className = 'flex justify-between items-center border-b border-gray-700 py-1';
         div.innerHTML = `
-          <div>
-            <span class="block font-semibold text-yellow-300">${item.nombre}</span>
-            <div class="flex items-center gap-2 mt-1">
-              <button onclick="cambiarCantidad('${item.nombre}', -1)" class="bg-yellow-400 text-black px-2 rounded hover:bg-yellow-300">-</button>
-              <span>${item.cantidad}</span>
-              <button onclick="cambiarCantidad('${item.nombre}', 1)" class="bg-yellow-400 text-black px-2 rounded hover:bg-yellow-300">+</button>
-            </div>
+          <span>${item.nombre}</span>
+          <div class="flex items-center space-x-2">
+            <button onclick="cambiarCantidad(${index}, -1)" class="bg-yellow-300 text-black px-2 rounded">-</button>
+            <span>${item.cantidad}</span>
+            <button onclick="cambiarCantidad(${index}, 1)" class="bg-yellow-300 text-black px-2 rounded">+</button>
+            <span>$${(item.precio * item.cantidad).toFixed(2)}</span>
           </div>
-          <span class="text-yellow-200">$${(item.precio * item.cantidad).toFixed(0)}</span>
         `;
         carritoDiv.appendChild(div);
       });
-      document.getElementById('carrito-total').textContent = `$${total.toFixed(0)}`;
+      document.getElementById('carrito-total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    function cambiarCantidad(index, cambio) {
+      carrito[index].cantidad += cambio;
+      if (carrito[index].cantidad <= 0) {
+        carrito.splice(index, 1);
+      }
+      actualizarCarrito();
     }
 
     function toggleCarrito() {
@@ -62,7 +58,7 @@
 <body class="bg-black text-gray-100 font-sans">
   <!-- Encabezado -->
   <header class="flex flex-col items-center justify-center p-6 border-b border-gray-800">
-    <img src="LOGO.png" alt="Logo VORTEKS" class="w-56 h-56 mb-2">
+    <img src="LOGO.png" alt="Logo VORTEKS" class="w-[672px] h-[672px] mb-2">
     <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTEꓘS Suplementos</h1>
   </header>
 
@@ -72,16 +68,12 @@
   </button>
 
   <!-- Carrito de compras -->
-  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-96 p-6 rounded-xl shadow-2xl z-50 border border-yellow-400">
-    <div class="flex items-center justify-between mb-4">
-      <img src="LOGO.png" alt="Logo" class="w-12 h-12">
-      <img src="PERSONAJE.png" alt="Personaje" class="w-12 h-12 rounded-full">
-    </div>
-    <h3 class="text-xl font-bold mb-4 text-yellow-300">Carrito de Compras</h3>
-    <div id="carrito-items" class="mb-4 max-h-64 overflow-y-auto pr-2"></div>
-    <div class="flex justify-between text-yellow-400 font-semibold text-lg">
+  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-96 p-4 rounded-xl shadow-lg z-50">
+    <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
+    <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
+    <div class="flex justify-between text-yellow-400 font-semibold">
       <span>Total:</span>
-      <span id="carrito-total">$0</span>
+      <span id="carrito-total">$0.00</span>
     </div>
   </div>
 
