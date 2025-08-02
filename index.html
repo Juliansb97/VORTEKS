@@ -6,36 +6,6 @@
   <title>Suplementos VORTEꓘS</title>
   <link rel="icon" type="image/png" href="LOGO.png" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Funciones básicas para el carrito
-    let carrito = [];
-
-    function agregarAlCarrito(nombre, precio) {
-      carrito.push({ nombre, precio });
-      actualizarCarrito();
-    }
-
-    function actualizarCarrito() {
-      const carritoDiv = document.getElementById('carrito-items');
-      carritoDiv.innerHTML = '';
-      let total = 0;
-      carrito.forEach((item, index) => {
-        total += item.precio;
-        const div = document.createElement('div');
-        div.className = 'flex justify-between border-b border-gray-700 py-1';
-        div.innerHTML = `
-          <span>${item.nombre}</span>
-          <span>$${item.precio.toFixed(2)}</span>
-        `;
-        carritoDiv.appendChild(div);
-      });
-      document.getElementById('carrito-total').textContent = `$${total.toFixed(2)}`;
-    }
-
-    function toggleCarrito() {
-      document.getElementById('carrito').classList.toggle('hidden');
-    }
-  </script>
 </head>
 <body class="bg-black text-gray-100 font-sans">
   <!-- Encabezado -->
@@ -43,21 +13,6 @@
     <img src="LOGO.png" alt="Logo VORTEKS" class="w-56 h-56 mb-2">
     <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTEꓘS Suplementos</h1>
   </header>
-
-  <!-- Botón Carrito -->
-  <button onclick="toggleCarrito()" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-lg hover:bg-yellow-300 transition z-50">
-    🛒
-  </button>
-
-  <!-- Carrito de compras -->
-  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
-    <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
-    <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
-    <div class="flex justify-between text-yellow-400 font-semibold">
-      <span>Total:</span>
-      <span id="carrito-total">$0.00</span>
-    </div>
-  </div>
 
   <!-- Beneficios -->
   <section class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -81,7 +36,6 @@
         </a>
         <h3 class="text-lg font-semibold text-yellow-400 mt-2">Creatina en Gomitas</h3>
         <p class="text-gray-400">Impulsa tu fuerza y resistencia muscular.</p>
-        <button onclick="agregarAlCarrito('Creatina en Gomitas', 95000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300">Agregar al carrito</button>
       </div>
       <div class="bg-gray-900 p-4 rounded-xl">
         <a href="proteina.html">
@@ -89,7 +43,6 @@
         </a>
         <h3 class="text-lg font-semibold text-yellow-400 mt-2">Proteína</h3>
         <p class="text-gray-400">Recuperación y desarrollo muscular de forma deliciosa.</p>
-        <button onclick="agregarAlCarrito('Proteína', 105000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300">Agregar al carrito</button>
       </div>
       <div class="bg-gray-900 p-4 rounded-xl">
         <a href="energizante.html">
@@ -97,7 +50,6 @@
         </a>
         <h3 class="text-lg font-semibold text-yellow-400 mt-2">Energizante</h3>
         <p class="text-gray-400">Energía instantánea para tus entrenamientos.</p>
-        <button onclick="agregarAlCarrito('Energizante', 89000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300">Agregar al carrito</button>
       </div>
       <div class="bg-gray-900 p-4 rounded-xl">
         <a href="bcaa.html">
@@ -105,7 +57,6 @@
         </a>
         <h3 class="text-lg font-semibold text-yellow-400 mt-2">BCAA</h3>
         <p class="text-gray-400">Aminoácidos esenciales para recuperación.</p>
-        <button onclick="agregarAlCarrito('BCAA', 78000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300">Agregar al carrito</button>
       </div>
     </div>
   </section>
