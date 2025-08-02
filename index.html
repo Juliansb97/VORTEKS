@@ -3,137 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proteínas - VORTEꓘS</title>
+  <title>Suplementos VORTEꓘS</title>
   <link rel="icon" type="image/png" href="LOGO.png" />
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-black text-white font-sans">
-  <!-- Header -->
-  <header class="flex items-center justify-between p-4 border-b border-gray-800">
-    <a href="index.html">
-      <img src="LOGO.png" alt="Logo VORTEKS" class="w-24 h-24 hover:opacity-80">
-    </a>
-    <h1 class="text-2xl font-bold text-yellow-400">Proteínas VORTEꓘS</h1>
-    <button onclick="toggleCarrito()" class="text-yellow-300 font-bold hover:text-yellow-400">🛒 Ver carrito</button>
-  </header>
-
-  <!-- Título -->
-  <section class="p-6">
-    <h2 class="text-3xl font-bold text-yellow-300 mb-4">Proteínas disponibles</h2>
-    <p class="text-gray-400 mb-6">Apoya tu recuperación y desarrollo muscular con nuestras proteínas de alta calidad.</p>
-
-    <!-- Productos -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Producto 1 -->
-      <div class="bg-gray-900 p-4 rounded-xl shadow hover:shadow-yellow-400 transition">
-        <img src="proteina1.png" alt="Proteína Whey Sabor Chocolate" class="w-full h-48 object-cover rounded-lg mb-2">
-        <h3 class="text-xl font-semibold text-yellow-400">Proteína Whey (chocolate)</h3>
-        <p class="text-gray-300">Excelente para ganar masa muscular. Suave sabor a chocolate.</p>
-        <p class="text-green-400 font-bold mt-2">$78000</p>
-        <button onclick="agregarAlCarrito('Proteína Whey (chocolate)', 78000)" class="mt-3 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300">Agregar al carrito</button>
-      </div>
-
-      <!-- Producto 2 -->
-      <div class="bg-gray-900 p-4 rounded-xl shadow hover:shadow-yellow-400 transition">
-        <img src="proteina2.png" alt="Proteína Vegana Sabor Vainilla" class="w-full h-48 object-cover rounded-lg mb-2">
-        <h3 class="text-xl font-semibold text-yellow-400">Proteína Vegana (vainilla)</h3>
-        <p class="text-gray-300">Fuente vegetal, perfecta para dietas basadas en plantas.</p>
-        <p class="text-green-400 font-bold mt-2">$82000</p>
-        <button onclick="agregarAlCarrito('Proteína Vegana (vainilla)', 82000)" class="mt-3 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300">Agregar al carrito</button>
-      </div>
-
-      <!-- Producto 3 -->
-      <div class="bg-gray-900 p-4 rounded-xl shadow hover:shadow-yellow-400 transition">
-        <img src="proteina3.png" alt="Proteína Aislada Sabor Fresa" class="w-full h-48 object-cover rounded-lg mb-2">
-        <h3 class="text-xl font-semibold text-yellow-400">Proteína Aislada (fresa)</h3>
-        <p class="text-gray-300">Alta pureza y rápida absorción para entrenamientos intensos.</p>
-        <p class="text-green-400 font-bold mt-2">$90000</p>
-        <button onclick="agregarAlCarrito('Proteína Aislada (fresa)', 90000)" class="mt-3 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300">Agregar al carrito</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Volver al inicio -->
-  <section class="p-6 text-center">
-    <a href="index.html" class="text-yellow-400 hover:underline">← Volver al inicio</a>
-  </section>
-
-  <!-- Carrito -->
-  <div id="carrito" class="hidden fixed top-20 right-6 bg-gradient-to-br from-black via-gray-900 to-black border-4 border-yellow-400 rounded-3xl shadow-2xl p-6 w-96 z-50 relative">
-    <img src="LOGO-mini.png" alt="Logo VORTEKS" class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full shadow-xl border-4 border-yellow-400 bg-black" />
-    <img src="personaje-oni.png" class="absolute bottom-2 right-2 w-20 opacity-20 pointer-events-none" />
-    <h3 class="text-2xl font-extrabold text-yellow-300 mb-4 text-center">Carrito de Compras</h3>
-    <div id="carrito-items" class="mb-4 max-h-64 overflow-y-auto space-y-2 text-white"></div>
-    <div class="flex justify-between items-center font-bold text-yellow-300 text-lg border-t border-yellow-500 pt-4">
-      <span>Total:</span>
-      <span id="carrito-total">$0.00</span>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="p-4 text-center text-gray-500 text-sm border-t border-gray-800">
-    © 2025 VORTEꓘS. Todos los derechos reservados.
-  </footer>
-
-  <!-- Scripts -->
   <script>
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-    function toggleCarrito() {
-      const carritoDiv = document.getElementById('carrito');
-      carritoDiv.classList.toggle('hidden');
-    }
+    // Funciones básicas para el carrito
+    let carrito = [];
 
     function agregarAlCarrito(nombre, precio) {
-      const index = carrito.findIndex(item => item.nombre === nombre);
-      if (index !== -1) {
-        carrito[index].cantidad += 1;
-      } else {
-        carrito.push({ nombre, precio, cantidad: 1 });
-      }
-      guardarCarrito();
+      carrito.push({ nombre, precio });
       actualizarCarrito();
-    }
-
-    function cambiarCantidad(nombre, cantidad) {
-      const index = carrito.findIndex(item => item.nombre === nombre);
-      if (index !== -1) {
-        carrito[index].cantidad += cantidad;
-        if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
-      }
-      guardarCarrito();
-      actualizarCarrito();
-    }
-
-    function guardarCarrito() {
-      localStorage.setItem('carrito', JSON.stringify(carrito));
     }
 
     function actualizarCarrito() {
       const carritoDiv = document.getElementById('carrito-items');
       carritoDiv.innerHTML = '';
       let total = 0;
-      carrito.forEach(item => {
-        total += item.precio * item.cantidad;
+      carrito.forEach((item, index) => {
+        total += item.precio;
         const div = document.createElement('div');
-        div.className = 'flex justify-between items-center border-b border-gray-700 py-2';
+        div.className = 'flex justify-between border-b border-gray-700 py-1';
         div.innerHTML = `
-          <div>
-            <span class="font-bold text-yellow-300">${item.nombre}</span><br>
-            <span class="text-sm text-gray-400">$${item.precio.toFixed(0)} x ${item.cantidad}</span>
-          </div>
-          <div class="flex items-center gap-1">
-            <button onclick="cambiarCantidad('${item.nombre}', -1)" class="bg-red-500 text-white px-2 rounded">−</button>
-            <span>${item.cantidad}</span>
-            <button onclick="cambiarCantidad('${item.nombre}', 1)" class="bg-green-500 text-white px-2 rounded">+</button>
-          </div>
+          <span>${item.nombre}</span>
+          <span>$${item.precio.toFixed(2)}</span>
         `;
         carritoDiv.appendChild(div);
       });
-      document.getElementById('carrito-total').textContent = `$${total.toLocaleString('es-CO')}`;
+      document.getElementById('carrito-total').textContent = `$${total.toFixed(2)}`;
     }
 
-    document.addEventListener('DOMContentLoaded', actualizarCarrito);
+    function toggleCarrito() {
+      document.getElementById('carrito').classList.toggle('hidden');
+    }
   </script>
+</head>
+<body class="bg-black text-gray-100 font-sans">
+  <!-- Encabezado -->
+  <header class="flex flex-col items-center justify-center p-6 border-b border-gray-800">
+    <img src="LOGO.png" alt="Logo VORTEKS" class="w-56 h-56 mb-2">
+    <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTEꓘS Suplementos</h1>
+  </header>
+
+  <!-- Botón Carrito -->
+  <button onclick="toggleCarrito()" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-lg hover:bg-yellow-300 transition z-50">
+    🛒
+  </button>
+
+  <!-- Carrito de compras -->
+  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
+    <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
+    <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
+    <div class="flex justify-between text-yellow-400 font-semibold">
+      <span>Total:</span>
+      <span id="carrito-total">$0.00</span>
+    </div>
+  </div>
+
+  <!-- Beneficios -->
+  <section class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-gray-900 p-4 rounded-xl shadow-md hover:shadow-yellow-400 transition">
+      <h2 class="text-xl font-semibold text-yellow-300">Potencia tu rendimiento</h2>
+      <p class="text-gray-400">Suplementos pensados para quienes entrenan con fuerza y pasión.</p>
+    </div>
+    <div class="bg-gray-900 p-4 rounded-xl shadow-md hover:shadow-yellow-400 transition">
+      <h2 class="text-xl font-semibold text-yellow-300">Formatos innovadores</h2>
+      <p class="text-gray-400">Gomitas con ingredientes efectivos, cómodas de consumir.</p>
+    </div>
+  </section>
+
+  <!-- Productos -->
+  <section class="p-6">
+    <h2 class="text-2xl font-bold text-yellow-300 mb-4">Nuestros Productos</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-900 p-4 rounded-xl">
+        <a href="creatina.html">
+          <img src="CREATINE.png" alt="Creatina" class="w-full rounded-xl">
+        </a>
+        <h3 class="text-lg font-semibold text-yellow-400 mt-2">Creatina en Gomitas</h3>
+        <p class="text-gray-400">Impulsa tu fuerza y resistencia muscular.</p>
+        <button onclick="agregarAlCarrito('Creatina en Gomitas', 95000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300">Agregar al carrito</button>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-xl">
+        <a href="proteina.html">
+          <img src="PROTEINA.png" alt="Proteína" class="w-full rounded-xl">
+        </a>
+        <h3 class="text-lg font-semibold text-yellow-400 mt-2">Proteína</h3>
+        <p class="text-gray-400">Recuperación y desarrollo muscular de forma deliciosa.</p>
+        <button onclick="agregarAlCarrito('Proteína', 105000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300">Agregar al carrito</button>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-xl">
+        <a href="energizante.html">
+          <img src="ENERGIZANTE.png" alt="Energizante" class="w-full rounded-xl">
+        </a>
+        <h3 class="text-lg font-semibold text-yellow-400 mt-2">Energizante</h3>
+        <p class="text-gray-400">Energía instantánea para tus entrenamientos.</p>
+        <button onclick="agregarAlCarrito('Energizante', 89000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300">Agregar al carrito</button>
+      </div>
+      <div class="bg-gray-900 p-4 rounded-xl">
+        <a href="bcaa.html">
+          <img src="BCAA.png" alt="BCAA" class="w-full rounded-xl">
+        </a>
+        <h3 class="text-lg font-semibold text-yellow-400 mt-2">BCAA</h3>
+        <p class="text-gray-400">Aminoácidos esenciales para recuperación.</p>
+        <button onclick="agregarAlCarrito('BCAA', 78000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300">Agregar al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="p-6 bg-gray-950">
+    <h2 class="text-2xl font-bold text-yellow-300 mb-4">Testimonios</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <blockquote class="bg-gray-800 p-4 rounded-xl italic text-gray-300">
+        "Con VORTEꓘS mejoré mi rendimiento al 100%. Las gomitas son lo mejor que he probado."
+        <br><span class="block mt-2 font-semibold text-yellow-400">— Daniel F.</span>
+      </blockquote>
+      <blockquote class="bg-gray-800 p-4 rounded-xl italic text-gray-300">
+        "Ya no olvido tomar mis suplementos. ¡Saben increíble y funcionan!"
+        <br><span class="block mt-2 font-semibold text-yellow-400">— Laura M.</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="p-6">
+    <h2 class="text-2xl font-bold text-yellow-300 mb-4">Contáctanos</h2>
+    <form class="grid gap-4 max-w-xl">
+      <input type="text" placeholder="Nombre" class="p-2 rounded bg-gray-800 text-white" />
+      <input type="email" placeholder="Correo electrónico" class="p-2 rounded bg-gray-800 text-white" />
+      <textarea placeholder="Mensaje" rows="4" class="p-2 rounded bg-gray-800 text-white"></textarea>
+      <button class="bg-yellow-400 text-black py-2 px-4 rounded hover:bg-yellow-300">Enviar</button>
+    </form>
+  </section>
+
+  <!-- Botón WhatsApp -->
+  <a href="#" class="fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-400 transition">
+    WhatsApp
+  </a>
+
+  <!-- Pie de página -->
+  <footer class="p-4 text-center text-gray-500 text-sm border-t border-gray-800">
+    © 2025 VORTEꓘS. Todos los derechos reservados.
+  </footer>
 </body>
 </html>
