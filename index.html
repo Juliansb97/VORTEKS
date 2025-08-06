@@ -11,10 +11,8 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Poppins', sans-serif; }
   </style>
-
   <script>
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
     function agregarAlCarrito(nombre, precio) {
       const index = carrito.findIndex(item => item.nombre === nombre);
       if (index !== -1) {
@@ -25,14 +23,11 @@
       localStorage.setItem('carrito', JSON.stringify(carrito));
       actualizarCarrito();
     }
-
     function actualizarCarrito() {
       const carritoDiv = document.getElementById('carrito-items');
       if (!carritoDiv) return;
-
       carritoDiv.innerHTML = '';
       let total = 0;
-
       carrito.forEach(item => {
         total += item.precio * item.cantidad;
         const div = document.createElement('div');
@@ -43,72 +38,25 @@
         `;
         carritoDiv.appendChild(div);
       });
-
       const totalSpan = document.getElementById('carrito-total');
       if (totalSpan) {
         totalSpan.textContent = `$${total.toLocaleString('es-CO')}`;
       }
     }
-
     function toggleCarrito() {
       document.getElementById('carrito').classList.toggle('hidden');
       actualizarCarrito();
     }
-
     document.addEventListener('DOMContentLoaded', actualizarCarrito);
   </script>
 </head>
 <body class="bg-black text-gray-100">
-
-  <!-- Empleado del Mes -->
-  <div class="flex justify-end items-start p-4">
-    <div class="text-center bg-white text-black rounded-xl shadow-lg p-3 w-52">
-      <h3 class="font-bold text-sm mb-2 text-yellow-500 uppercase">Empleado del Mes</h3>
-      <img src="empleado.jpg" alt="Empleado del Mes" class="rounded-lg w-full h-auto object-cover">
-      <p class="mt-2 text-xs font-semibold">Khyro Bernal</p>
-    </div>
-  </div>
 
   <!-- Encabezado -->
   <header class="flex flex-col items-center justify-center p-6 border-b border-gray-800">
     <img src="LOGO.png" alt="Logo VORTEKS" class="w-56 h-56 mb-2">
     <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTEKS Suplementos</h1>
   </header>
-
-  <!-- Sección de VIDEOS: Entrena con Nosotros -->
-  <section class="text-white py-10 px-6 bg-black text-center">
-    <h2 class="text-3xl font-bold mb-6 text-yellow-400">Entrena con Nosotros</h2>
-    <p class="mb-8 text-gray-300 max-w-xl mx-auto">
-      Mira cómo se entrena nuestro equipo con pasión, fuerza y disciplina.
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe src="https://www.youtube.com/embed/pa78ae4qwYE" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
-      </div>
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe src="https://www.youtube.com/embed/def456" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
-      </div>
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe src="https://www.youtube.com/embed/ghi789" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Botón Carrito -->
-  <button onclick="toggleCarrito()" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 z-50">
-    🛒
-  </button>
-
-  <!-- Carrito de compras -->
-  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
-    <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
-    <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
-    <div class="flex justify-between text-yellow-400 font-semibold">
-      <span>Total:</span>
-      <span id="carrito-total">$0</span>
-    </div>
-  </div>
 
   <!-- Beneficios -->
   <section class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -132,14 +80,14 @@
         </a>
         <h3 class="text-lg font-semibold text-yellow-400 mt-2">Creatina en Gomitas</h3>
         <p class="text-gray-400">Impulsa tu fuerza y resistencia muscular.</p>
-        </div>
+      </div>
       <div class="bg-gray-900 p-4 rounded-xl shadow-lg hover:shadow-yellow-500 hover:scale-[1.02] transition duration-300">
         <a href="proteina.html">
           <img src="PROTEINA.png" alt="Proteína" class="w-full rounded-xl">
         </a>
         <h3 class="text-lg font-semibold text-yellow-400 mt-2">Proteína</h3>
         <p class="text-gray-400">Recuperación y desarrollo muscular de forma deliciosa.</p>
-        </div>
+      </div>
       <div class="bg-gray-900 p-4 rounded-xl shadow-lg hover:shadow-yellow-500 hover:scale-[1.02] transition duration-300">
         <a href="energizante.html">
           <img src="ENERGIZANTE.png" alt="Energizante" class="w-full rounded-xl">
@@ -151,7 +99,26 @@
         </a>
         <h3 class="text-lg font-semibold text-yellow-400 mt-2">BCAA</h3>
         <p class="text-gray-400">Aminoácidos esenciales para recuperación.</p>
-       </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de VIDEOS: Entrena con Nosotros -->
+  <section class="text-white py-10 px-6 bg-black text-center">
+    <h2 class="text-3xl font-bold mb-6 text-yellow-400">Entrena con Nosotros</h2>
+    <p class="mb-8 text-gray-300 max-w-xl mx-auto">
+      Mira cómo se entrena nuestro equipo con pasión, fuerza y disciplina.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe src="https://www.youtube.com/embed/pa78ae4qwYE" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
+      </div>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe src="https://www.youtube.com/embed/def456" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
+      </div>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe src="https://www.youtube.com/embed/ghi789" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
+      </div>
     </div>
   </section>
 
@@ -170,6 +137,15 @@
     </div>
   </section>
 
+  <!-- Empleado del Mes -->
+  <div class="flex justify-end items-start p-4">
+    <div class="text-center bg-white text-black rounded-xl shadow-lg p-3 w-52">
+      <h3 class="font-bold text-sm mb-2 text-yellow-500 uppercase">Empleado del Mes</h3>
+      <img src="empleado.jpg" alt="Empleado del Mes" class="rounded-lg w-full h-auto object-cover">
+      <p class="mt-2 text-xs font-semibold">Khyro Bernal</p>
+    </div>
+  </div>
+
   <!-- Contacto -->
   <section class="p-6">
     <h2 class="text-2xl font-bold text-yellow-300 mb-4">Contáctanos</h2>
@@ -180,6 +156,21 @@
       <button class="bg-yellow-400 text-black py-2 px-4 rounded hover:bg-yellow-300 transition duration-300">Enviar</button>
     </form>
   </section>
+
+  <!-- Botón Carrito -->
+  <button onclick="toggleCarrito()" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 z-50">
+    🛒
+  </button>
+
+  <!-- Carrito de compras -->
+  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
+    <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
+    <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
+    <div class="flex justify-between text-yellow-400 font-semibold">
+      <span>Total:</span>
+      <span id="carrito-total">$0</span>
+    </div>
+  </div>
 
   <!-- Botón WhatsApp -->
   <a href="https://wa.me/573133732803" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-xl hover:bg-green-400 hover:scale-110 transition z-50">
