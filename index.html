@@ -8,18 +8,20 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; }
   </style>
+
   <script>
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
     function agregarAlCarrito(nombre, precio) {
-      carrito.push({ nombre, precio });
+      const index = carrito.findIndex(item => item.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push({ nombre, precio, cantidad: 1 });
+      }
       localStorage.setItem('carrito', JSON.stringify(carrito));
       actualizarCarrito();
     }
@@ -27,18 +29,21 @@
     function actualizarCarrito() {
       const carritoDiv = document.getElementById('carrito-items');
       if (!carritoDiv) return;
+
       carritoDiv.innerHTML = '';
       let total = 0;
-      carrito.forEach((item) => {
-        total += item.precio;
+
+      carrito.forEach(item => {
+        total += item.precio * item.cantidad;
         const div = document.createElement('div');
         div.className = 'flex justify-between border-b border-gray-700 py-1';
         div.innerHTML = `
-          <span>${item.nombre}</span>
-          <span>$${item.precio.toLocaleString('es-CO')}</span>
+          <span>${item.nombre} x${item.cantidad}</span>
+          <span>$${(item.precio * item.cantidad).toLocaleString('es-CO')}</span>
         `;
         carritoDiv.appendChild(div);
       });
+
       const totalSpan = document.getElementById('carrito-total');
       if (totalSpan) {
         totalSpan.textContent = `$${total.toLocaleString('es-CO')}`;
@@ -67,31 +72,28 @@
   <!-- Encabezado -->
   <header class="flex flex-col items-center justify-center p-6 border-b border-gray-800">
     <img src="LOGO.png" alt="Logo VORTEKS" class="w-56 h-56 mb-2">
-    <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTEKS</h1>
+    <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTEKS Suplementos</h1>
   </header>
 
-<!-- Sección de VIDEOS: Entrena con Nosotros -->
-<section class="text-white py-10 px-6 bg-black text-center">
-  <h2 class="text-3xl font-bold mb-6 text-yellow-400">Entrena con Nosotros</h2>
-  <p class="mb-8 text-gray-300 max-w-xl mx-auto">
-    Mira cómo se entrena nuestro equipo con pasión, fuerza y disciplina.
-  </p>
+  <!-- Sección de VIDEOS: Entrena con Nosotros -->
+  <section class="text-white py-10 px-6 bg-black text-center">
+    <h2 class="text-3xl font-bold mb-6 text-yellow-400">Entrena con Nosotros</h2>
+    <p class="mb-8 text-gray-300 max-w-xl mx-auto">
+      Mira cómo se entrena nuestro equipo con pasión, fuerza y disciplina.
+    </p>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-    <!-- Video 1 -->
-    <div class="aspect-w-16 aspect-h-9">
-      <iframe src="https://www.youtube.com/embed/pa78ae4qwYE" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe src="https://www.youtube.com/embed/pa78ae4qwYE" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
+      </div>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe src="https://www.youtube.com/embed/def456" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
+      </div>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe src="https://www.youtube.com/embed/ghi789" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
+      </div>
     </div>
-    <!-- Video 2 -->
-    <div class="aspect-w-16 aspect-h-9">
-      <iframe src="https://www.youtube.com/embed/def456" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
-    </div>
-    <!-- Video 3 -->
-    <div class="aspect-w-16 aspect-h-9">
-      <iframe src="https://www.youtube.com/embed/ghi789" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Botón Carrito -->
   <button onclick="toggleCarrito()" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 z-50">
@@ -124,7 +126,6 @@
   <section class="p-6">
     <h2 class="text-2xl font-bold text-yellow-300 mb-4">Nuestros Productos</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Producto 1 -->
       <div class="bg-gray-900 p-4 rounded-xl shadow-lg hover:shadow-yellow-500 hover:scale-[1.02] transition duration-300">
         <a href="creatina.html">
           <img src="CREATINE.png" alt="Creatina" class="w-full rounded-xl">
@@ -133,7 +134,6 @@
         <p class="text-gray-400">Impulsa tu fuerza y resistencia muscular.</p>
         <button onclick="agregarAlCarrito('Creatina en Gomitas', 95000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300 transition duration-300">Agregar al carrito</button>
       </div>
-      <!-- Producto 2 -->
       <div class="bg-gray-900 p-4 rounded-xl shadow-lg hover:shadow-yellow-500 hover:scale-[1.02] transition duration-300">
         <a href="proteina.html">
           <img src="PROTEINA.png" alt="Proteína" class="w-full rounded-xl">
@@ -142,7 +142,6 @@
         <p class="text-gray-400">Recuperación y desarrollo muscular de forma deliciosa.</p>
         <button onclick="agregarAlCarrito('Proteína', 105000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300 transition duration-300">Agregar al carrito</button>
       </div>
-      <!-- Producto 3 -->
       <div class="bg-gray-900 p-4 rounded-xl shadow-lg hover:shadow-yellow-500 hover:scale-[1.02] transition duration-300">
         <a href="energizante.html">
           <img src="ENERGIZANTE.png" alt="Energizante" class="w-full rounded-xl">
@@ -151,7 +150,6 @@
         <p class="text-gray-400">Energía instantánea para tus entrenamientos.</p>
         <button onclick="agregarAlCarrito('Energizante', 89000)" class="mt-2 bg-yellow-400 text-black py-1 px-3 rounded hover:bg-yellow-300 transition duration-300">Agregar al carrito</button>
       </div>
-      <!-- Producto 4 -->
       <div class="bg-gray-900 p-4 rounded-xl shadow-lg hover:shadow-yellow-500 hover:scale-[1.02] transition duration-300">
         <a href="bcaa.html">
           <img src="BCAA.png" alt="BCAA" class="w-full rounded-xl">
