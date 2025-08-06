@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Suplementos VORTEꓘS</title>
+  <title>Suplementos VORTE  <title>Suplementos VORTE\uA4DS</title>
   <link rel="icon" type="image/png" href="LOGO.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
@@ -16,15 +16,17 @@
     }
   </style>
   <script>
-    let carrito = [];
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
     function agregarAlCarrito(nombre, precio) {
       carrito.push({ nombre, precio });
+      localStorage.setItem('carrito', JSON.stringify(carrito));
       actualizarCarrito();
     }
 
     function actualizarCarrito() {
       const carritoDiv = document.getElementById('carrito-items');
+      if (!carritoDiv) return;
       carritoDiv.innerHTML = '';
       let total = 0;
       carrito.forEach((item) => {
@@ -33,16 +35,22 @@
         div.className = 'flex justify-between border-b border-gray-700 py-1';
         div.innerHTML = `
           <span>${item.nombre}</span>
-          <span>$${item.precio.toFixed(2)}</span>
+          <span>$${item.precio.toLocaleString('es-CO')}</span>
         `;
         carritoDiv.appendChild(div);
       });
-      document.getElementById('carrito-total').textContent = `$${total.toFixed(2)}`;
+      const totalSpan = document.getElementById('carrito-total');
+      if (totalSpan) {
+        totalSpan.textContent = `$${total.toLocaleString('es-CO')}`;
+      }
     }
 
     function toggleCarrito() {
       document.getElementById('carrito').classList.toggle('hidden');
+      actualizarCarrito();
     }
+
+    document.addEventListener('DOMContentLoaded', actualizarCarrito);
   </script>
 </head>
 <body class="bg-black text-gray-100">
@@ -59,7 +67,7 @@
   <!-- Encabezado -->
   <header class="flex flex-col items-center justify-center p-6 border-b border-gray-800">
     <img src="LOGO.png" alt="Logo VORTEKS" class="w-56 h-56 mb-2">
-    <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTEꓘS Suplementos</h1>
+    <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTE>VORTE\uA4DS Suplementos</h1>
   </header>
 
 <!-- Sección de VIDEOS: Entrena con Nosotros -->
@@ -96,7 +104,7 @@
     <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
     <div class="flex justify-between text-yellow-400 font-semibold">
       <span>Total:</span>
-      <span id="carrito-total">$0.00</span>
+      <span id="carrito-total">$0</span>
     </div>
   </div>
 
@@ -160,7 +168,7 @@
     <h2 class="text-2xl font-bold text-yellow-300 mb-4">Testimonios</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <blockquote class="bg-gray-800 p-6 rounded-xl italic text-gray-300 shadow-md hover:shadow-yellow-400 transition duration-300">
-        "Con VORTEꓘS mejoré mi rendimiento al 100%. Las gomitas son lo mejor que he probado."
+        "Con VORTECon VORTE\uA4DS mejoré mi rendimiento al 100%. Las gomitas son lo mejor que he probado."
         <br><span class="block mt-2 font-semibold text-yellow-400">— Daniel F.</span>
       </blockquote>
       <blockquote class="bg-gray-800 p-6 rounded-xl italic text-gray-300 shadow-md hover:shadow-yellow-400 transition duration-300">
@@ -183,12 +191,12 @@
 
   <!-- Botón WhatsApp -->
   <a href="https://wa.me/573133732803" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-xl hover:bg-green-400 hover:scale-110 transition z-50">
-    💬
+    📨
   </a>
 
   <!-- Pie de página -->
   <footer class="p-4 text-center text-gray-500 text-sm border-t border-gray-800">
-    © 2025 VORTEꓘS. Todos los derechos reservados.
+    © 2025 VORTE 2025 VORTE\uA4DS. Todos los derechos reservados.
   </footer>
 
 </body>
