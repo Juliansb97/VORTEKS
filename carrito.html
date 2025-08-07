@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Suplementos VORTE੍S</title>
+  <title>Suplementos VORTEꓘS</title>
   <link rel="icon" type="image/png" href="LOGO.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-black text-gray-100" x-data="cartApp">
 
-  <!-- Encabezado con Empleado del Mes -->
+  <!-- Encabezado -->
   <div class="flex flex-col lg:flex-row justify-between items-center p-6 border-b border-gray-800 relative">
     <div class="flex flex-col items-center">
       <img src="LOGO.png" alt="Logo VORTEKS" class="w-56 h-56 mb-2">
-      <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTE੍S Suplementos</h1>
+      <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTEꓘS Suplementos</h1>
     </div>
     <div class="mt-4 lg:mt-0">
       <div class="text-center bg-white text-black rounded-xl shadow-lg p-3 w-52">
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <!-- Menú de navegación -->
+  <!-- Navegación -->
   <nav class="bg-gray-900 text-white p-4 flex justify-center space-x-4 border-b border-gray-800">
     <a href="index.html" class="hover:text-yellow-400">Inicio</a>
     <a href="productos.html" class="hover:text-yellow-400">Productos</a>
@@ -35,48 +35,61 @@
     <a href="contacto.html" class="hover:text-yellow-400">Contacto</a>
   </nav>
 
-  <!-- Carrito de compras -->
+  <!-- Carrito -->
   <section class="py-10 px-4 max-w-4xl mx-auto">
     <h2 class="text-3xl font-bold text-yellow-400 mb-6 text-center">Carrito de Compras</h2>
 
+    <!-- Mensaje -->
+    <div x-show="showMessage" x-text="message" class="text-green-400 text-center mb-4" x-transition></div>
+
     <template x-if="cart.length === 0">
-      <p class="text-center">Tu carrito está vacío.</p>
+      <p class="text-center text-gray-400">Tu carrito está vacío.</p>
     </template>
 
     <template x-if="cart.length > 0">
       <div class="space-y-6">
         <template x-for="(item, index) in cart" :key="index">
-          <div class="flex items-center justify-between bg-gray-800 rounded-lg p-4">
-            <div>
-              <h3 class="font-bold text-lg" x-text="item.nombre"></h3>
-              <p class="text-sm text-gray-400">Precio: $<span x-text="item.precio"></span></p>
+          <div class="flex items-center justify-between bg-gray-800 rounded-lg p-4" x-transition.opacity.duration.300ms>
+            <div class="flex items-center gap-4">
+              <img :src="item.imagen" alt="" class="w-16 h-16 rounded shadow-md object-cover">
+              <div>
+                <h3 class="font-bold text-lg" x-text="item.nombre"></h3>
+                <p class="text-sm text-gray-400">Precio: $<span x-text="item.precio"></span></p>
+                <p class="text-sm text-gray-400">Total: $<span x-text="(item.precio * item.cantidad).toFixed(2)"></span></p>
+              </div>
             </div>
             <div class="flex items-center space-x-3">
-              <button @click="decreaseQuantity(index)" class="bg-yellow-500 hover:bg-yellow-400 text-black px-2 rounded">-</button>
+              <button @click="decreaseQuantity(index)" class="bg-yellow-500 hover:bg-yellow-400 text-black px-3 py-1 rounded-full shadow">-</button>
               <span x-text="item.cantidad"></span>
-              <button @click="increaseQuantity(index)" class="bg-yellow-500 hover:bg-yellow-400 text-black px-2 rounded">+</button>
-              <button @click="removeItem(index)" class="text-red-500 hover:text-red-400">Eliminar</button>
+              <button @click="increaseQuantity(index)" class="bg-yellow-500 hover:bg-yellow-400 text-black px-3 py-1 rounded-full shadow">+</button>
+              <button @click="removeItem(index)" class="text-red-400 hover:text-red-300 text-sm underline">Eliminar</button>
             </div>
           </div>
         </template>
 
-        <div class="text-right mt-6">
+        <!-- Total y opciones -->
+        <div class="text-right mt-6 space-y-2">
           <p class="text-xl font-semibold">Total: $<span x-text="total"></span></p>
-          <button class="mt-2 bg-green-500 hover:bg-green-400 text-black px-4 py-2 rounded">Finalizar compra</button>
+          <div class="flex justify-end items-center gap-4">
+            <button @click="clearCart" class="text-sm text-red-400 hover:text-red-300 underline">Vaciar carrito</button>
+            <button class="bg-green-500 hover:bg-green-400 text-black px-4 py-2 rounded shadow">Finalizar compra</button>
+          </div>
         </div>
       </div>
     </template>
   </section>
 
-  <!-- Pie de página -->
+  <!-- Footer -->
   <footer class="bg-gray-800 text-white text-center py-4 mt-10">
-    <p>&copy; 2025 VORTE੍S Suplementos. Todos los derechos reservados.</p>
+    <p>&copy; 2025 VORTEꓘS Suplementos. Todos los derechos reservados.</p>
   </footer>
 
   <script>
     document.addEventListener('alpine:init', () => {
       Alpine.data('cartApp', () => ({
         cart: JSON.parse(localStorage.getItem('cart') || '[]'),
+        showMessage: false,
+        message: '',
 
         get total() {
           return this.cart.reduce((sum, item) => sum + item.precio * item.cantidad, 0).toFixed(2);
@@ -84,23 +97,35 @@
 
         increaseQuantity(index) {
           this.cart[index].cantidad++;
-          this.saveCart();
+          this.saveCart('Cantidad aumentada');
         },
 
         decreaseQuantity(index) {
           if (this.cart[index].cantidad > 1) {
             this.cart[index].cantidad--;
-            this.saveCart();
+            this.saveCart('Cantidad disminuida');
           }
         },
 
         removeItem(index) {
-          this.cart.splice(index, 1);
-          this.saveCart();
+          if (confirm('¿Eliminar este producto del carrito?')) {
+            this.cart.splice(index, 1);
+            this.saveCart('Producto eliminado');
+          }
         },
 
-        saveCart() {
+        clearCart() {
+          if (confirm('¿Vaciar todo el carrito?')) {
+            this.cart = [];
+            this.saveCart('Carrito vacío');
+          }
+        },
+
+        saveCart(message = 'Carrito actualizado ✔') {
           localStorage.setItem('cart', JSON.stringify(this.cart));
+          this.message = message;
+          this.showMessage = true;
+          setTimeout(() => this.showMessage = false, 2000);
         },
 
         addToCart(product) {
@@ -110,7 +135,7 @@
           } else {
             this.cart.push({ ...product, cantidad: 1 });
           }
-          this.saveCart();
+          this.saveCart('Producto agregado');
         }
       }));
     });
