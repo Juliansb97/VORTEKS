@@ -6,8 +6,13 @@
   <title>Proteínas - VORTEꓘS</title>
   <link rel="icon" type="image/png" href="LOGO.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
+  <script defer src="carrito.js"></script>
 </head>
 <body class="bg-black text-white font-sans">
+
   <!-- Header -->
   <header class="flex items-center justify-between p-4 border-b border-gray-800">
     <a href="index.html">
@@ -57,34 +62,26 @@
     <a href="index.html" class="text-yellow-400 hover:underline">← Volver al inicio</a>
   </section>
 
+  <!-- Botón Carrito -->
+  <button onclick="toggleCarrito()" aria-label="Abrir carrito de compras" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 z-50">
+    🛒
+  </button>
+
+  <!-- Carrito flotante -->
+  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
+    <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
+    <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
+    <div class="flex justify-between text-yellow-400 font-semibold mb-2">
+      <span>Total:</span>
+      <span id="carrito-total">$0</span>
+    </div>
+    <button onclick="vaciarCarrito()" class="w-full bg-red-500 text-white py-1 rounded hover:bg-red-400">Vaciar carrito</button>
+  </div>
+
   <!-- Footer -->
   <footer class="p-4 text-center text-gray-500 text-sm border-t border-gray-800">
     © 2025 VORTEꓘS. Todos los derechos reservados.
   </footer>
 
-  <!-- Script carrito -->
-  <script>
-    function agregarAlCarrito(nombre, precio, imagen) {
-      const producto = {
-        nombre,
-        precio,
-        imagen,
-        cantidad: 1
-      };
-
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-      const index = carrito.findIndex(p => p.nombre === nombre);
-
-      if (index !== -1) {
-        carrito[index].cantidad += 1;
-      } else {
-        carrito.push(producto);
-      }
-
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      alert(`${nombre} fue agregado al carrito.`);
-    }
-  </script>
 </body>
 </html>
