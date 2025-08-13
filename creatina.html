@@ -6,8 +6,13 @@
   <title>Creatinas - VORTEꓘS</title>
   <link rel="icon" type="image/png" href="LOGO.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
+  <script defer src="carrito.js"></script>
 </head>
 <body class="bg-black text-white font-sans">
+
   <!-- Header -->
   <header class="flex items-center justify-between p-4 border-b border-gray-800">
     <a href="index.html">
@@ -16,9 +21,9 @@
     <h1 class="text-2xl font-bold text-yellow-400">Creatinas VORTEꓘS</h1>
   </header>
 
-  <!-- Imagen tipo cartel centrada -->
+  <!-- Imagen promocional -->
   <section class="p-6 flex justify-center">
-    <img src="HISTORIETA1.png" alt="Cartel Promocional" class="max-w-full md:max-w-3xl rounded-lg shadow-lg">
+    <img src="HISTORIETA1.png" alt="Promoción Creatina VORTEKS" class="max-w-full md:max-w-3xl rounded-lg shadow-lg">
   </section>
 
   <!-- Título -->
@@ -28,7 +33,6 @@
 
     <!-- Productos -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Producto 1 -->
       <div class="bg-gray-900 p-4 rounded-xl shadow hover:shadow-yellow-400 transition">
         <div class="w-full h-48 overflow-hidden flex justify-center items-center mb-2 rounded-lg">
           <img src="FOTOCREA1.png" alt="Creatina Monohidrato 100% Pura" class="h-full object-contain">
@@ -39,7 +43,6 @@
         <button onclick="agregarAlCarrito('Creatina Monohidrato 100% Pura', 150000, 'FOTOCREA1.png')" class="mt-3 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
       </div>
 
-      <!-- Producto 2 -->
       <div class="bg-gray-900 p-4 rounded-xl shadow hover:shadow-yellow-400 transition">
         <img src="creatina2.png" alt="Creatina Micronizada 300g" class="w-full h-48 object-cover rounded-lg mb-2">
         <h3 class="text-xl font-semibold text-yellow-400">Creatina Micronizada 300g</h3>
@@ -48,7 +51,6 @@
         <button onclick="agregarAlCarrito('Creatina Micronizada 300g', 130000, 'creatina2.png')" class="mt-3 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
       </div>
 
-      <!-- Producto 3 -->
       <div class="bg-gray-900 p-4 rounded-xl shadow hover:shadow-yellow-400 transition">
         <img src="creatina3.png" alt="Creatina con Beta-Alanina" class="w-full h-48 object-cover rounded-lg mb-2">
         <h3 class="text-xl font-semibold text-yellow-400">Creatina con Beta-Alanina</h3>
@@ -64,34 +66,26 @@
     <a href="index.html" class="text-yellow-400 hover:underline">← Volver al inicio</a>
   </section>
 
+  <!-- Botón Carrito -->
+  <button onclick="toggleCarrito()" aria-label="Abrir carrito de compras" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 z-50">
+    🛒
+  </button>
+
+  <!-- Carrito flotante -->
+  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
+    <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
+    <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
+    <div class="flex justify-between text-yellow-400 font-semibold mb-2">
+      <span>Total:</span>
+      <span id="carrito-total">$0</span>
+    </div>
+    <button onclick="vaciarCarrito()" class="w-full bg-red-500 text-white py-1 rounded hover:bg-red-400">Vaciar carrito</button>
+  </div>
+
   <!-- Footer -->
   <footer class="p-4 text-center text-gray-500 text-sm border-t border-gray-800">
     © 2025 VORTEꓘS. Todos los derechos reservados.
   </footer>
 
-  <!-- Script carrito -->
-  <script>
-    function agregarAlCarrito(nombre, precio, imagen) {
-      const producto = {
-        nombre,
-        precio,
-        imagen,
-        cantidad: 1
-      };
-
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-      const index = carrito.findIndex(p => p.nombre === nombre);
-
-      if (index !== -1) {
-        carrito[index].cantidad += 1;
-      } else {
-        carrito.push(producto);
-      }
-
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-      alert(`${nombre} fue agregado al carrito.`);
-    }
-  </script>
 </body>
 </html>
