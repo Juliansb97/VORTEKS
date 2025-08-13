@@ -1,60 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Meta datos básicos -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VORTEKS Suplementos - Potencia tu rendimiento con nuestros productos innovadores en formatos únicos como gomitas con creatina, proteína, preentreno y BCAA.">
+  
   <title>SUPLEMENTOS VORTEKS</title>
+  
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="LOGO.png" />
+  
+  <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos globales -->
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Poppins', sans-serif; }
   </style>
-  <script>
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    function agregarAlCarrito(nombre, precio) {
-      const index = carrito.findIndex(item => item.nombre === nombre);
-      if (index !== -1) {
-        carrito[index].cantidad += 1;
-      } else {
-        carrito.push({ nombre, precio, cantidad: 1 });
-      }
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      actualizarCarrito();
-    }
-    function actualizarCarrito() {
-      const carritoDiv = document.getElementById('carrito-items');
-      if (!carritoDiv) return;
-      carritoDiv.innerHTML = '';
-      let total = 0;
-      carrito.forEach(item => {
-        total += item.precio * item.cantidad;
-        const div = document.createElement('div');
-        div.className = 'flex justify-between border-b border-gray-700 py-1';
-        div.innerHTML = `
-          <span>${item.nombre} x${item.cantidad}</span>
-          <span>$${(item.precio * item.cantidad).toLocaleString('es-CO')}</span>
-        `;
-        carritoDiv.appendChild(div);
-      });
-      const totalSpan = document.getElementById('carrito-total');
-      if (totalSpan) {
-        totalSpan.textContent = `$${total.toLocaleString('es-CO')}`;
-      }
-    }
-    function toggleCarrito() {
-      document.getElementById('carrito').classList.toggle('hidden');
-      actualizarCarrito();
-    }
-    document.addEventListener('DOMContentLoaded', actualizarCarrito);
-  </script>
+
+  <!-- Script del carrito -->
+  <script defer src="carrito.js"></script>
 </head>
 <body class="bg-black text-gray-100">
 
   <!-- Encabezado -->
   <header class="flex flex-col items-center justify-center p-6 border-b border-gray-800">
-    <img src="LOGO.png" alt="Logo VORTEKS" class="w-56 h-56 mb-2">
+    <img src="LOGO.png" alt="Logo de VORTEKS Suplementos" class="w-56 h-56 mb-2">
     <h1 class="text-3xl font-bold text-yellow-400 text-center">VORTEKS Suplementos</h1>
   </header>
 
@@ -70,57 +46,63 @@
     </div>
   </section>
 
-<!-- Productos -->
-<section class="p-6">
-  <h2 class="text-3xl font-bold text-yellow-300 mb-8 text-center">Nuestros Productos</h2>
+  <!-- Productos -->
+  <section class="p-6">
+    <h2 class="text-3xl font-bold text-yellow-300 mb-8 text-center">Nuestros Productos</h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <!-- Producto 1 -->
-    <a href="creatina.html" class="block bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-500 transition duration-300">
-      <div class="w-full h-[700px] flex items-center justify-center bg-black">
-        <img src="CREATINE.png" alt="Creatina" class="h-full w-full object-contain">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Producto 1 -->
+      <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-500 transition duration-300">
+        <a href="creatina.html">
+          <div class="w-full h-[700px] flex items-center justify-center bg-black">
+            <img src="CREATINE.png" alt="Creatina VORTEKS" class="h-full w-full object-contain">
+          </div>
+        </a>
+        <button onclick="agregarAlCarrito('Creatina VORTEKS', 120000)" class="w-full bg-yellow-400 text-black py-2 hover:bg-yellow-300">Agregar al carrito</button>
       </div>
-    </a>
 
-    <!-- Producto 2 -->
-    <a href="proteina.html" class="block bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-500 transition duration-300">
-      <div class="w-full h-[700px] flex items-center justify-center bg-black">
-        <img src="PROTEINA.png" alt="Proteína" class="h-full w-full object-contain">
+      <!-- Producto 2 -->
+      <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-500 transition duration-300">
+        <a href="proteina.html">
+          <div class="w-full h-[700px] flex items-center justify-center bg-black">
+            <img src="PROTEINA.png" alt="Proteína VORTEKS" class="h-full w-full object-contain">
+          </div>
+        </a>
+        <button onclick="agregarAlCarrito('Proteína VORTEKS', 150000)" class="w-full bg-yellow-400 text-black py-2 hover:bg-yellow-300">Agregar al carrito</button>
       </div>
-    </a>
 
-    <!-- Producto 3 -->
-    <a href="energizante.html" class="block bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-500 transition duration-300">
-      <div class="w-full h-[700px] flex items-center justify-center bg-black">
-        <img src="ENERGIZANTE.png" alt="Energizante" class="h-full w-full object-contain">
+      <!-- Producto 3 -->
+      <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-500 transition duration-300">
+        <a href="energizante.html">
+          <div class="w-full h-[700px] flex items-center justify-center bg-black">
+            <img src="ENERGIZANTE.png" alt="Energizante VORTEKS" class="h-full w-full object-contain">
+          </div>
+        </a>
+        <button onclick="agregarAlCarrito('Energizante VORTEKS', 90000)" class="w-full bg-yellow-400 text-black py-2 hover:bg-yellow-300">Agregar al carrito</button>
       </div>
-    </a>
 
-    <!-- Producto 4 -->
-    <a href="bcaa.html" class="block bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-500 transition duration-300">
-      <div class="w-full h-[700px] flex items-center justify-center bg-black">
-        <img src="BCAA.png" alt="BCAA" class="h-full w-full object-contain">
+      <!-- Producto 4 -->
+      <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-yellow-500 transition duration-300">
+        <a href="bcaa.html">
+          <div class="w-full h-[700px] flex items-center justify-center bg-black">
+            <img src="BCAA.png" alt="BCAA VORTEKS" class="h-full w-full object-contain">
+          </div>
+        </a>
+        <button onclick="agregarAlCarrito('BCAA VORTEKS', 80000)" class="w-full bg-yellow-400 text-black py-2 hover:bg-yellow-300">Agregar al carrito</button>
       </div>
-    </a>
-  </div>
-</section>
+    </div>
+  </section>
 
-  <!-- Sección de VIDEOS: Entrena con Nosotros -->
+  <!-- Sección de VIDEOS -->
   <section class="text-white py-10 px-6 bg-black text-center">
     <h2 class="text-3xl font-bold mb-6 text-yellow-400">Entrena con Nosotros</h2>
     <p class="mb-8 text-gray-300 max-w-xl mx-auto">
       Mira cómo se entrena nuestro equipo con pasión, fuerza y disciplina.
     </p>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe src="https://www.youtube.com/embed/pa78ae4qwYE" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
-      </div>
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe src="https://www.youtube.com/embed/def456" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
-      </div>
-      <div class="aspect-w-16 aspect-h-9">
-        <iframe src="https://www.youtube.com/embed/ghi789" frameborder="0" allowfullscreen class="w-full h-full rounded-xl shadow-lg"></iframe>
-      </div>
+      <iframe src="https://www.youtube.com/embed/pa78ae4qwYE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-64 rounded-xl shadow-lg"></iframe>
+      <iframe src="https://www.youtube.com/embed/def456" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-64 rounded-xl shadow-lg"></iframe>
+      <iframe src="https://www.youtube.com/embed/ghi789" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-64 rounded-xl shadow-lg"></iframe>
     </div>
   </section>
 
@@ -139,69 +121,39 @@
     </div>
   </section>
 
-  <!-- Productos del mes -->
-  <section class="p-6">
-    <h2 class="text-2xl font-bold text-yellow-300 mb-4">Productos TOP del Mes</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-      <!-- Producto 1 -->
-      <div class="bg-white text-black rounded-xl shadow-lg p-3 text-center">
-        <h3 class="font-bold text-sm mb-2 text-yellow-500 uppercase">Creatina del Mes</h3>
-        <img src="CREATINE.png" alt="Creatina del Mes" class="rounded-lg w-full h-auto object-cover">
-        <p class="mt-2 text-xs font-semibold">MUSCLETECH 60 SERVS</p>
-      </div>
-      <!-- Producto 2 -->
-      <div class="bg-white text-black rounded-xl shadow-lg p-3 text-center">
-        <h3 class="font-bold text-sm mb-2 text-yellow-500 uppercase">Proteína del Mes</h3>
-        <img src="CREATINE.png" alt="Proteína del Mes" class="rounded-lg w-full h-auto object-cover">
-        <p class="mt-2 text-xs font-semibold">MUSCLETECH 2 LBS</p>
-      </div>
-      <!-- Producto 3 -->
-      <div class="bg-white text-black rounded-xl shadow-lg p-3 text-center">
-        <h3 class="font-bold text-sm mb-2 text-yellow-500 uppercase">Pre Entreno del Mes</h3>
-        <img src="CREATINE.png" alt="Pre Entreno del Mes" class="rounded-lg w-full h-auto object-cover">
-        <p class="mt-2 text-xs font-semibold">MUSCLETECH 60 SERVS</p>
-      </div>
-      <!-- Producto 4 -->
-      <div class="bg-white text-black rounded-xl shadow-lg p-3 text-center">
-        <h3 class="font-bold text-sm mb-2 text-yellow-500 uppercase">BCAA del Mes</h3>
-        <img src="CREATINE.png" alt="BCAA del Mes" class="rounded-lg w-full h-auto object-cover">
-        <p class="mt-2 text-xs font-semibold">MUSCLETECH 60 SERVS</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Contacto -->
   <section class="p-6">
     <h2 class="text-2xl font-bold text-yellow-300 mb-4">Contáctanos</h2>
-    <form class="grid gap-4 max-w-xl">
-      <input type="text" placeholder="Nombre" class="p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-      <input type="email" placeholder="Correo electrónico" class="p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" />
-      <textarea placeholder="Mensaje" rows="4" class="p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+    <form class="grid gap-4 max-w-xl" onsubmit="return validarFormulario(event)">
+      <input type="text" placeholder="Nombre" required aria-label="Nombre" class="p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+      <input type="email" placeholder="Correo electrónico" required aria-label="Correo electrónico" class="p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+      <textarea placeholder="Mensaje" rows="4" required aria-label="Mensaje" class="p-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
       <button class="bg-yellow-400 text-black py-2 px-4 rounded hover:bg-yellow-300 transition duration-300">Enviar</button>
     </form>
   </section>
 
   <!-- Botón Carrito -->
-  <button onclick="toggleCarrito()" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 z-50">
+  <button onclick="toggleCarrito()" aria-label="Abrir carrito de compras" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 z-50">
     🛒
   </button>
 
-  <!-- Carrito de compras -->
+  <!-- Carrito -->
   <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
     <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
     <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
-    <div class="flex justify-between text-yellow-400 font-semibold">
+    <div class="flex justify-between text-yellow-400 font-semibold mb-2">
       <span>Total:</span>
       <span id="carrito-total">$0</span>
     </div>
+    <button onclick="vaciarCarrito()" class="w-full bg-red-500 text-white py-1 rounded hover:bg-red-400">Vaciar carrito</button>
   </div>
 
   <!-- Botón WhatsApp -->
-  <a href="https://wa.me/573133732803" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-xl hover:bg-green-400 hover:scale-110 transition z-50">
+  <a href="https://wa.me/573133732803?text=Hola%20quiero%20más%20información%20sobre%20sus%20productos" target="_blank" aria-label="Enviar mensaje por WhatsApp" class="fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-xl hover:bg-green-400 hover:scale-110 transition z-50">
     📨
   </a>
 
-  <!-- Pie de página -->
+  <!-- Footer -->
   <footer class="p-4 text-center text-gray-500 text-sm border-t border-gray-800">
     © 2025 VORTEKS. Todos los derechos reservados.
   </footer>
