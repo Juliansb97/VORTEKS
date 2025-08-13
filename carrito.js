@@ -1,12 +1,12 @@
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Agregar producto
-function agregarAlCarrito(nombre, precio) {
+function agregarAlCarrito(nombre, precio, imagen = '') {
   const index = carrito.findIndex(item => item.nombre === nombre);
   if (index !== -1) {
     carrito[index].cantidad += 1;
   } else {
-    carrito.push({ nombre, precio, cantidad: 1 });
+    carrito.push({ nombre, precio, imagen, cantidad: 1 });
   }
   guardarCarrito();
   actualizarCarrito();
@@ -21,9 +21,10 @@ function guardarCarrito() {
 function actualizarCarrito() {
   const carritoDiv = document.getElementById('carrito-items');
   if (!carritoDiv) return;
-  carritoDiv.innerHTML = '';
 
+  carritoDiv.innerHTML = '';
   let total = 0;
+
   carrito.forEach((item, i) => {
     total += item.precio * item.cantidad;
 
@@ -43,7 +44,10 @@ function actualizarCarrito() {
     carritoDiv.appendChild(div);
   });
 
-  document.getElementById('carrito-total').textContent = `$${total.toLocaleString('es-CO')}`;
+  const totalSpan = document.getElementById('carrito-total');
+  if (totalSpan) {
+    totalSpan.textContent = `$${total.toLocaleString('es-CO')}`;
+  }
 }
 
 // Cambiar cantidad
@@ -76,11 +80,5 @@ function toggleCarrito() {
   actualizarCarrito();
 }
 
-// Validar formulario
-function validarFormulario(event) {
-  event.preventDefault();
-  alert('Formulario enviado correctamente ✅');
-  return false;
-}
-
+// Inicializar
 document.addEventListener('DOMContentLoaded', actualizarCarrito);
