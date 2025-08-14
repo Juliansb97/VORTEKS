@@ -275,5 +275,37 @@
 
   <!-- Aquí conectamos con el carrito -->
   <script src="carrito.js"></script>
+  <!-- Botón carrito flotante -->
+<div id="carrito-btn"
+     style="position: fixed; bottom: 20px; right: 20px; background-color: #f8e3b0; color: black; padding: 15px; border-radius: 50%; font-size: 24px; cursor: pointer; z-index: 50;">
+  🛒
+</div>
+
+<!-- Panel lateral del carrito -->
+<div id="carrito-panel"
+     style="position: fixed; top: 0; right: -350px; width: 350px; height: 100%; background-color: rgba(17,17,17,0.95); color: white; padding: 20px; transition: right 0.3s ease; z-index: 100; border-left: 2px solid #f8e3b0;">
+  <h2 class="titulo-logo text-2xl mb-4">Tu carrito</h2>
+  <div id="carrito-items"></div>
+  <p class="mt-4">Total: <span id="carrito-total">$0 COP</span></p>
+  <button onclick="vaciarCarrito()" 
+          style="margin-top: 1rem; background-color: #ef4444; color: white; width: 100%; padding: 0.5rem; border-radius: 0.25rem; transition: background 0.3s;"
+          onmouseover="this.style.backgroundColor='#f87171'"
+          onmouseout="this.style.backgroundColor='#ef4444'">
+    Vaciar carrito
+  </button>
+</div>
+
+<!-- Script del carrito -->
+<script src="carrito.js"></script>
+<script>
+  document.getElementById("carrito-btn").addEventListener("click", function() {
+    document.getElementById("carrito-panel").classList.toggle("active");
+    if (document.getElementById("carrito-panel").classList.contains("active")) {
+      document.getElementById("carrito-panel").style.right = "0";
+    } else {
+      document.getElementById("carrito-panel").style.right = "-350px";
+    }
+  });
+</script>
 </body>
 </html>
