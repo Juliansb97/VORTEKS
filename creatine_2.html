@@ -19,8 +19,8 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background-color: #1a1a1a; /* Fondo oscuro */
-            color: #f0f0f0; /* Color de texto claro */
+            background-color: #1a1a1a;
+            color: #f0f0f0;
         }
 
         a {
@@ -38,7 +38,7 @@
         /* ----------------------------------------------------- */
 
         .main-header {
-            background-color: #222; /* Fondo de la cabecera más oscuro */
+            background-color: #222;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
@@ -49,7 +49,7 @@
         .logo a {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #00bcd4; /* Un color llamativo para el logo */
+            color: #ffc107; /* Color principal: amarillo mostaza */
         }
 
         .main-nav ul {
@@ -68,10 +68,9 @@
         }
 
         .main-nav ul li a:hover {
-            color: #00bcd4;
+            color: #ffc107;
         }
 
-        /* Oculta el menú desplegable por defecto */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -96,7 +95,6 @@
             background-color: #333;
         }
 
-        /* Muestra el menú desplegable al pasar el cursor */
         .main-nav ul li.dropdown:hover .dropdown-menu {
             display: block;
         }
@@ -120,21 +118,21 @@
             text-align: center;
             margin-bottom: 2rem;
             font-size: 2.5rem;
-            color: #00bcd4;
+            color: #ffc107; /* Color principal: amarillo mostaza */
         }
 
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin-bottom: 3rem; /* Espacio para la próxima sección */
+            margin-bottom: 3rem;
         }
 
         .product-card {
-            background-color: #2a2a2a; /* Fondo de tarjeta oscuro */
+            background-color: #2a2a2a;
             padding: 1.5rem;
             text-align: center;
-            border-radius: 8px;
+            border-radius: 20px; /* Bordes más redondeados */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
@@ -146,7 +144,7 @@
         .product-card img {
             max-width: 100%;
             height: auto;
-            border-radius: 5px;
+            border-radius: 15px; /* Bordes de imagen redondeados */
             margin-bottom: 1rem;
         }
 
@@ -157,13 +155,13 @@
 
         .product-card .price {
             font-size: 1.5rem;
-            color: #4CAF50; /* Color verde para el precio */
+            color: #4CAF50;
             font-weight: bold;
             margin-bottom: 1rem;
         }
 
         .btn-buy {
-            background-color: #00bcd4;
+            background-color: #ffc107; /* Color principal: amarillo mostaza */
             color: #1a1a1a;
             padding: 0.7rem 1.5rem;
             border-radius: 50px;
@@ -172,7 +170,7 @@
         }
 
         .btn-buy:hover {
-            background-color: #008ba3;
+            background-color: #e6a800;
         }
 
 
@@ -189,7 +187,7 @@
 
         .benefits-section h2 {
             margin-bottom: 1.5rem;
-            color: #00bcd4;
+            color: #ffc107; /* Color principal: amarillo mostaza */
         }
 
         .benefit-item {
@@ -197,8 +195,10 @@
             background-color: #333;
             padding: 1rem;
             border-radius: 5px;
-            cursor: pointer; /* Muestra que es un elemento interactivo */
+            cursor: pointer;
             transition: background-color 0.3s ease;
+            position: relative; /* Para posicionar el ícono de +/ - */
+            text-align: left; /* Alineamos el texto a la izquierda */
         }
         
         .benefit-item:hover {
@@ -207,15 +207,35 @@
 
         .benefit-item h3 {
             font-size: 1.2rem;
+            margin-right: 30px; /* Espacio para el ícono */
         }
 
         .benefit-item p {
-            display: none; /* Ocultamos el texto de beneficios por defecto */
+            display: none;
             margin-top: 0.5rem;
         }
 
         .benefit-item.active p {
-            display: block; /* Mostramos el texto cuando el elemento tiene la clase 'active' */
+            display: block;
+        }
+
+        /* Estilos para el ícono de +/ - */
+        .benefit-item::after {
+            content: '+'; /* Símbolo por defecto */
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffc107;
+            transition: transform 0.3s ease;
+        }
+
+        /* Cambia el ícono cuando el elemento está activo */
+        .benefit-item.active::after {
+            content: '-';
+            transform: translateY(-50%) rotate(180deg);
         }
 
 
@@ -282,7 +302,7 @@
                 <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+3" alt="Proteína de Suero Sabor Chocolate VORTEKS">
                 <h3>Proteína de Suero Chocolate</h3>
                 <p class="price">$55.000</p>
-                <a href="FOTOCREA2.png" class="btn-buy">Añadir al carrito</a>
+                <a href="#" class="btn-buy">Añadir al carrito</a>
             </article>
         </section>
 
@@ -324,9 +344,7 @@
     </footer>
 
     <script>
-        // Función para mostrar/ocultar el texto de beneficios
         function toggleBenefit(element) {
-            // Alterna la clase 'active' en el elemento que se ha clicado
             element.classList.toggle('active');
         }
     </script>
