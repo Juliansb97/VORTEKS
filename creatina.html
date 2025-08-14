@@ -7,26 +7,102 @@
   <link rel="icon" type="image/png" href="LOGO.png" />
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fuente similar al logo -->
+  <!-- Fuente estilo retro similar al logo -->
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
 
   <style>
-    body { font-family: 'Alfa Slab One', cursive; background-color: #000; }
+    body { 
+      font-family: 'Alfa Slab One', cursive; 
+      background-color: #000; 
+    }
+
+    /* Texto estilo logo con brillo animado */
     .titulo-logo {
-      color: #f8e3b0; /* color crema del logo */
-      text-shadow: 2px 2px 0 #7a0000, -2px -2px 0 #7a0000; /* contorno rojo */
+      color: #f8e3b0; 
+      text-shadow: 
+        2px 2px 0 #7a0000, 
+        -2px 2px 0 #7a0000, 
+        2px -2px 0 #7a0000, 
+        -2px -2px 0 #7a0000;
+      animation: brillo 2s infinite alternate;
     }
+
+    @keyframes brillo {
+      from { filter: drop-shadow(0 0 3px #ffcc80); }
+      to { filter: drop-shadow(0 0 8px #ffcc80); }
+    }
+
+    /* Precio */
     .precio {
-      color: #00ff7f; /* verde brillante para el precio */
+      color: #00ff7f;
+      font-weight: bold;
     }
+
+    /* Tarjeta producto */
     .producto-card {
       background-color: #111;
       border: 2px solid transparent;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
     .producto-card:hover {
       border-color: #f8e3b0;
-      transform: scale(1.02);
+      transform: scale(1.03);
+    }
+
+    /* Imagen redonda */
+    .imagen-producto {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .imagen-producto img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    /* Tooltip flotante premium */
+    .tooltip-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(20, 20, 20, 0.95);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      border-top: 2px solid #f8e3b0;
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(6px);
+      pointer-events: none;
+      transition: all 0.4s ease;
+    }
+    .producto-card:hover .tooltip-info {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+      pointer-events: auto;
+    }
+
+    /* Botón Comprar */
+    .btn-comprar {
+      background-color: #f8e3b0;
+      color: #000;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .btn-comprar:hover {
+      background-color: #e6d19a;
+      transform: scale(1.05);
     }
   </style>
 
@@ -58,33 +134,39 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
       <div class="producto-card p-4 rounded-xl text-center">
-        <div class="w-full h-52 flex justify-center items-center mb-4 overflow-hidden rounded-lg">
-          <img src="FOTOCREA1.png" alt="Creatina Monohidrato 100% Pura" class="h-full object-contain">
+        <div class="imagen-producto mx-auto mb-4">
+          <img src="FOTOCREA1.png" alt="Creatina Monohidrato 100% Pura">
         </div>
         <h3 class="titulo-logo text-xl mb-2">Creatina Monohidrato 100% Pura</h3>
-        <p class="text-gray-300">Excelente para aumentar tu rendimiento y fuerza.</p>
-        <p class="precio font-bold mt-3">$150.000 COP</p>
-        <button onclick="agregarAlCarrito('Creatina Monohidrato 100% Pura', 150000, 'FOTOCREA1.png')" class="mt-4 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
+        <p class="precio mt-3">$150.000 COP</p>
+        <button onclick="agregarAlCarrito('Creatina Monohidrato 100% Pura', 150000, 'FOTOCREA1.png')" class="btn-comprar mt-4 w-full py-2 rounded">Comprar</button>
+        <div class="tooltip-info">
+          Excelente para aumentar tu rendimiento y fuerza. Ideal para entrenamientos de alta intensidad.
+        </div>
       </div>
 
       <div class="producto-card p-4 rounded-xl text-center">
-        <div class="w-full h-52 flex justify-center items-center mb-4 overflow-hidden rounded-lg">
-          <img src="creatina2.png" alt="Creatina Micronizada 300g" class="h-full object-contain">
+        <div class="imagen-producto mx-auto mb-4">
+          <img src="creatina2.png" alt="Creatina Micronizada 300g">
         </div>
         <h3 class="titulo-logo text-xl mb-2">Creatina Micronizada 300g</h3>
-        <p class="text-gray-300">Textura más fina, fácil de disolver, ideal para atletas exigentes.</p>
-        <p class="precio font-bold mt-3">$130.000 COP</p>
-        <button onclick="agregarAlCarrito('Creatina Micronizada 300g', 130000, 'creatina2.png')" class="mt-4 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
+        <p class="precio mt-3">$130.000 COP</p>
+        <button onclick="agregarAlCarrito('Creatina Micronizada 300g', 130000, 'creatina2.png')" class="btn-comprar mt-4 w-full py-2 rounded">Comprar</button>
+        <div class="tooltip-info">
+          Textura más fina, fácil de disolver, ideal para atletas exigentes.
+        </div>
       </div>
 
       <div class="producto-card p-4 rounded-xl text-center">
-        <div class="w-full h-52 flex justify-center items-center mb-4 overflow-hidden rounded-lg">
-          <img src="creatina3.png" alt="Creatina con Beta-Alanina" class="h-full object-contain">
+        <div class="imagen-producto mx-auto mb-4">
+          <img src="creatina3.png" alt="Creatina con Beta-Alanina">
         </div>
         <h3 class="titulo-logo text-xl mb-2">Creatina con Beta-Alanina</h3>
-        <p class="text-gray-300">Mejora el rendimiento y retrasa la fatiga muscular.</p>
-        <p class="precio font-bold mt-3">$145.000 COP</p>
-        <button onclick="agregarAlCarrito('Creatina con Beta-Alanina', 145000, 'creatina3.png')" class="mt-4 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
+        <p class="precio mt-3">$145.000 COP</p>
+        <button onclick="agregarAlCarrito('Creatina con Beta-Alanina', 145000, 'creatina3.png')" class="btn-comprar mt-4 w-full py-2 rounded">Comprar</button>
+        <div class="tooltip-info">
+          Mejora el rendimiento y retrasa la fatiga muscular, perfecta para rutinas intensas.
+        </div>
       </div>
 
     </div>
