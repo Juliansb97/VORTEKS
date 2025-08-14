@@ -47,9 +47,10 @@
       border-color: #f8e3b0;
       transform: scale(1.03);
     }
+    /* 🔹 Reducido de 200px a 150px */
     .imagen-producto {
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       background-color: #222;
       display: flex;
@@ -105,6 +106,12 @@
       from { opacity: 0; transform: scale(0.9) translateY(20px); filter: blur(4px); }
       to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
     }
+    /* 🔹 Imágenes del modal al 50% */
+    #modal-img {
+      width: 50%;
+      margin: auto;
+      display: block;
+    }
   </style>
 </head>
 <body class="text-white">
@@ -136,7 +143,7 @@
       <div class="producto-card p-4 rounded-xl text-center" 
            onclick="abrirModal({
              titulo: 'Creatina con Beta-Alanina',
-             imagenes: ['FOTOCREA1.png', 'FOTOCREA2.png', 'FOTOCREA3.png'],
+             imagenes: ['creatina1.jpg', 'creatina1b.jpg', 'creatina1c.jpg'],
              precio: '$145.000 COP',
              descripcion: [
                'Mejora el rendimiento',
@@ -145,7 +152,7 @@
              ]
            })">
         <div class="imagen-producto mb-4">
-          <img src="FOTOCREA1.png" alt="Creatina con Beta-Alanina">
+          <img src="creatina1.jpg" alt="Creatina con Beta-Alanina">
         </div>
         <h3 class="titulo-logo text-xl mb-2">Creatina con Beta-Alanina</h3>
         <p class="precio mt-3">$145.000 COP</p>
@@ -208,7 +215,7 @@
 
       <!-- Carrusel -->
       <div class="relative mb-4">
-        <img id="modal-img" src="" alt="Producto" class="w-full rounded-lg">
+        <img id="modal-img" src="" alt="Producto" class="rounded-lg">
         <button onclick="cambiarImagen(-1)" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-yellow-400 text-black px-2 py-1 rounded-l">‹</button>
         <button onclick="cambiarImagen(1)" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-yellow-400 text-black px-2 py-1 rounded-r">›</button>
       </div>
