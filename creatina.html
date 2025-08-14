@@ -115,14 +115,15 @@
       transform: scale(1.05);
     }
 
-    /* Modal */
-    #modal-producto {
-      animation: fadeIn 0.3s ease forwards;
+    /* Modal Animación */
+    .modal-content {
+      animation: zoomIn 0.3s ease forwards;
+      transform-origin: center;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); filter: blur(4px); }
+      to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
     }
   </style>
 
@@ -161,9 +162,7 @@
         <h3 class="titulo-logo text-xl mb-2">Creatina Monohidrato 100% Pura</h3>
         <p class="precio mt-3">$150.000 COP</p>
         <button class="btn-comprar mt-4 w-full py-2 rounded">Ver más</button>
-        <div class="tooltip-info">
-          Excelente para aumentar tu rendimiento y fuerza.
-        </div>
+        <div class="tooltip-info">Excelente para aumentar tu rendimiento y fuerza.</div>
       </div>
 
       <div class="producto-card p-4 rounded-xl text-center" onclick="abrirModal('Creatina Micronizada 300g', 'creatina2.png', '$130.000 COP', 'Textura más fina, fácil de disolver, ideal para atletas exigentes.')">
@@ -173,9 +172,7 @@
         <h3 class="titulo-logo text-xl mb-2">Creatina Micronizada 300g</h3>
         <p class="precio mt-3">$130.000 COP</p>
         <button class="btn-comprar mt-4 w-full py-2 rounded">Ver más</button>
-        <div class="tooltip-info">
-          Textura más fina, fácil de disolver.
-        </div>
+        <div class="tooltip-info">Textura más fina, fácil de disolver.</div>
       </div>
 
       <div class="producto-card p-4 rounded-xl text-center" onclick="abrirModal('Creatina con Beta-Alanina', 'creatina3.png', '$145.000 COP', 'Mejora el rendimiento y retrasa la fatiga muscular, perfecta para rutinas intensas.')">
@@ -185,40 +182,29 @@
         <h3 class="titulo-logo text-xl mb-2">Creatina con Beta-Alanina</h3>
         <p class="precio mt-3">$145.000 COP</p>
         <button class="btn-comprar mt-4 w-full py-2 rounded">Ver más</button>
-        <div class="tooltip-info">
-          Mejora el rendimiento y retrasa la fatiga.
-        </div>
+        <div class="tooltip-info">Mejora el rendimiento y retrasa la fatiga.</div>
       </div>
 
     </div>
   </section>
 
   <!-- Modal -->
-  <div id="modal-producto" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
-    <div class="bg-gray-900 rounded-lg p-6 max-w-md w-full relative">
-      <button onclick="cerrarModal()" class="absolute top-3 right-3 text-white text-xl">&times;</button>
+  <div id="modal-producto" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50" onclick="cerrarModal(event)">
+    <div class="modal-content bg-gray-900 rounded-lg p-6 w-[90%] max-w-sm relative shadow-xl border-2 border-yellow-400">
+      
+      <!-- Botón cerrar flotante -->
+      <button onclick="cerrarModal()" 
+        class="absolute -top-4 -right-4 bg-red-500 hover:bg-red-400 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl font-bold shadow-lg transition">
+        &times;
+      </button>
+      
       <img id="modal-img" src="" alt="Producto" class="w-full rounded-lg mb-4">
-      <h3 id="modal-titulo" class="titulo-logo text-2xl mb-2"></h3>
-      <p id="modal-precio" class="precio mb-4"></p>
-      <p id="modal-descripcion" class="text-gray-300 mb-6"></p>
+      <h3 id="modal-titulo" class="titulo-logo text-xl mb-2 text-center"></h3>
+      <p id="modal-precio" class="precio mb-4 text-center"></p>
+      <p id="modal-descripcion" class="text-gray-300 mb-6 text-center"></p>
       <button class="btn-comprar w-full py-2 rounded">Comprar</button>
+      <button onclick="cerrarModal()" class="mt-3 w-full bg-red-500 py-2 rounded hover:bg-red-400 transition">Cerrar ventana</button>
     </div>
-  </div>
-
-  <!-- Botón Carrito -->
-  <button onclick="toggleCarrito()" aria-label="Abrir carrito de compras" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 z-50">
-    🛒
-  </button>
-
-  <!-- Carrito flotante -->
-  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
-    <h3 class="titulo-logo text-xl mb-3">Carrito de Compras</h3>
-    <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
-    <div class="flex justify-between text-yellow-400 font-semibold mb-2">
-      <span>Total:</span>
-      <span id="carrito-total">$0</span>
-    </div>
-    <button onclick="vaciarCarrito()" class="w-full bg-red-500 text-white py-1 rounded hover:bg-red-400">Vaciar carrito</button>
   </div>
 
   <!-- Footer -->
@@ -235,9 +221,17 @@
       document.getElementById('modal-producto').classList.remove('hidden');
     }
 
-    function cerrarModal() {
-      document.getElementById('modal-producto').classList.add('hidden');
+    function cerrarModal(e) {
+      if (!e || e.target.id === 'modal-producto') {
+        document.getElementById('modal-producto').classList.add('hidden');
+      }
     }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === "Escape") {
+        document.getElementById('modal-producto').classList.add('hidden');
+      }
+    });
   </script>
 
 </body>
