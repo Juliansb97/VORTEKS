@@ -13,7 +13,17 @@
   <style>
     body { 
       font-family: 'Alfa Slab One', cursive; 
-      background-color: #000; 
+      background: url('xxxx') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Fondo oscuro sobre la imagen para mejorar lectura */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: -1;
     }
 
     /* Texto estilo logo con brillo animado */
@@ -40,7 +50,7 @@
 
     /* Tarjeta producto */
     .producto-card {
-      background-color: #111;
+      background-color: rgba(17, 17, 17, 0.9);
       border: 2px solid transparent;
       transition: all 0.3s ease;
       position: relative;
@@ -68,13 +78,17 @@
       object-fit: contain;
     }
 
-    /* Tooltip flotante premium */
+    /* Tooltip metálico premium */
     .tooltip-info {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      background: rgba(20, 20, 20, 0.95);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(6px);
+      background-image: url('xxxx'); /* textura metálica */
+      background-size: cover;
+      background-blend-mode: overlay;
       color: white;
       padding: 1rem;
       text-align: center;
