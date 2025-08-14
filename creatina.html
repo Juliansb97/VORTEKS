@@ -41,7 +41,6 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      cursor: pointer;
     }
     .producto-card:hover {
       border-color: #f8e3b0;
@@ -85,7 +84,6 @@
       opacity: 1;
       transform: translateY(0);
       filter: blur(0);
-      pointer-events: auto;
     }
     .btn-comprar {
       background-color: #f8e3b0;
@@ -99,7 +97,6 @@
     }
     .modal-content {
       animation: zoomIn 0.3s ease forwards;
-      transform-origin: center;
     }
     @keyframes zoomIn {
       from { opacity: 0; transform: scale(0.9) translateY(20px); filter: blur(4px); }
@@ -111,6 +108,8 @@
       display: block;
     }
   </style>
+
+  <script defer src="carrito.js"></script>
 </head>
 <body class="text-white">
 
@@ -154,7 +153,7 @@
                'Ideal para rutinas intensas'
              ]
            })" class="btn-comprar mt-2 w-full py-2 rounded">Ver más</button>
-        <button onclick="agregarAlCarrito('Creatina con Beta-Alanina', 145000, 'creatina1.jpg')" class="btn-comprar mt-2 w-full py-2 rounded">Agregar al carrito</button>
+        <button onclick="agregarAlCarrito('Creatina con Beta-Alanina', 145000, 'FOTOCREA3.jpeg')" class="btn-comprar mt-2 w-full py-2 rounded">Agregar al carrito</button>
         <div class="tooltip-info">Mejora el rendimiento y retrasa la fatiga.</div>
       </div>
 
@@ -204,25 +203,37 @@
   <!-- Modal -->
   <div id="modal-producto" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50" onclick="cerrarModal(event)">
     <div class="modal-content bg-gray-900 rounded-lg p-6 w-[90%] max-w-sm relative shadow-xl border-2 border-yellow-400">
-      
       <button onclick="cerrarModal()" 
         class="absolute -top-4 -right-4 bg-red-500 hover:bg-red-400 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl font-bold shadow-lg transition">
         &times;
       </button>
-
       <div class="relative mb-4">
         <img id="modal-img" src="" alt="Producto" class="rounded-lg">
         <button onclick="cambiarImagen(-1)" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-yellow-400 text-black px-2 py-1 rounded-l">‹</button>
         <button onclick="cambiarImagen(1)" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-yellow-400 text-black px-2 py-1 rounded-r">›</button>
       </div>
-
       <h3 id="modal-titulo" class="titulo-logo text-xl mb-2 text-center"></h3>
       <p id="modal-precio" class="precio mb-4 text-center"></p>
       <ul id="modal-descripcion" class="text-gray-300 mb-6 list-disc list-inside"></ul>
-
       <button id="modal-add-cart" class="btn-comprar w-full py-2 rounded">Agregar al carrito</button>
       <button onclick="cerrarModal()" class="mt-3 w-full bg-red-500 py-2 rounded hover:bg-red-400 transition">Cerrar ventana</button>
     </div>
+  </div>
+
+  <!-- Botón Carrito -->
+  <button onclick="toggleCarrito()" aria-label="Abrir carrito de compras" class="fixed top-6 right-6 bg-yellow-400 text-black p-2 rounded-full shadow-2xl hover:scale-105 transition duration-300 z-50">
+    🛒
+  </button>
+
+  <!-- Carrito flotante -->
+  <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
+    <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
+    <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
+    <div class="flex justify-between text-yellow-400 font-semibold mb-2">
+      <span>Total:</span>
+      <span id="carrito-total">$0</span>
+    </div>
+    <button onclick="vaciarCarrito()" class="w-full bg-red-500 text-white py-1 rounded hover:bg-red-400">Vaciar carrito</button>
   </div>
 
   <footer class="p-4 text-center text-gray-500 text-sm border-t border-gray-800">
@@ -241,13 +252,11 @@
       imagenesModal = producto.imagenes;
       indiceImagen = 0;
       document.getElementById('modal-img').src = imagenesModal[0];
-
       let listaHTML = "";
       producto.descripcion.forEach(item => {
         listaHTML += `<li>${item}</li>`;
       });
       document.getElementById('modal-descripcion').innerHTML = listaHTML;
-
       document.getElementById('modal-producto').classList.remove('hidden');
     }
 
@@ -272,40 +281,5 @@
       }
     });
   </script>
-
-  <!-- Aquí conectamos con el carrito -->
-  <script src="carrito.js"></script>
-  <!-- Botón carrito flotante -->
-<div id="carrito-btn"
-     style="position: fixed; bottom: 20px; right: 20px; background-color: #f8e3b0; color: black; padding: 15px; border-radius: 50%; font-size: 24px; cursor: pointer; z-index: 50;">
-  🛒
-</div>
-
-<!-- Panel lateral del carrito -->
-<div id="carrito-panel"
-     style="position: fixed; top: 0; right: -350px; width: 350px; height: 100%; background-color: rgba(17,17,17,0.95); color: white; padding: 20px; transition: right 0.3s ease; z-index: 100; border-left: 2px solid #f8e3b0;">
-  <h2 class="titulo-logo text-2xl mb-4">Tu carrito</h2>
-  <div id="carrito-items"></div>
-  <p class="mt-4">Total: <span id="carrito-total">$0 COP</span></p>
-  <button onclick="vaciarCarrito()" 
-          style="margin-top: 1rem; background-color: #ef4444; color: white; width: 100%; padding: 0.5rem; border-radius: 0.25rem; transition: background 0.3s;"
-          onmouseover="this.style.backgroundColor='#f87171'"
-          onmouseout="this.style.backgroundColor='#ef4444'">
-    Vaciar carrito
-  </button>
-</div>
-
-<!-- Script del carrito -->
-<script src="carrito.js"></script>
-<script>
-  document.getElementById("carrito-btn").addEventListener("click", function() {
-    document.getElementById("carrito-panel").classList.toggle("active");
-    if (document.getElementById("carrito-panel").classList.contains("active")) {
-      document.getElementById("carrito-panel").style.right = "0";
-    } else {
-      document.getElementById("carrito-panel").style.right = "-350px";
-    }
-  });
-</script>
 </body>
 </html>
