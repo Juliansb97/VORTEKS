@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proteínas - VORTEKS</title>
+    <title>Las mejores proteínas del mercado - VORTEKS</title>
 
     <style>
         /* ----------------------------------------------------- */
@@ -132,7 +132,7 @@
             background-color: #2a2a2a;
             padding: 1.5rem;
             text-align: center;
-            border-radius: 20px; /* Bordes más redondeados */
+            border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
@@ -144,7 +144,7 @@
         .product-card img {
             max-width: 100%;
             height: auto;
-            border-radius: 15px; /* Bordes de imagen redondeados */
+            border-radius: 15px;
             margin-bottom: 1rem;
         }
 
@@ -155,7 +155,7 @@
 
         .product-card .price {
             font-size: 1.5rem;
-            color: #4CAF50;
+            color: #fff; /* Precio en color blanco */
             font-weight: bold;
             margin-bottom: 1rem;
         }
@@ -187,7 +187,7 @@
 
         .benefits-section h2 {
             margin-bottom: 1.5rem;
-            color: #ffc107; /* Color principal: amarillo mostaza */
+            color: #ffc107;
         }
 
         .benefit-item {
@@ -197,8 +197,8 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            position: relative; /* Para posicionar el ícono de +/ - */
-            text-align: left; /* Alineamos el texto a la izquierda */
+            position: relative;
+            text-align: left;
         }
         
         .benefit-item:hover {
@@ -207,7 +207,7 @@
 
         .benefit-item h3 {
             font-size: 1.2rem;
-            margin-right: 30px; /* Espacio para el ícono */
+            margin-right: 30px;
         }
 
         .benefit-item p {
@@ -219,9 +219,8 @@
             display: block;
         }
 
-        /* Estilos para el ícono de +/ - */
         .benefit-item::after {
-            content: '+'; /* Símbolo por defecto */
+            content: '+';
             position: absolute;
             right: 15px;
             top: 50%;
@@ -232,7 +231,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* Cambia el ícono cuando el elemento está activo */
         .benefit-item.active::after {
             content: '-';
             transform: translateY(-50%) rotate(180deg);
@@ -282,24 +280,24 @@
     </header>
 
     <main class="main-content">
-        <h2 class="page-title">Proteínas</h2>
+        <h2 class="page-title">Las mejores proteínas del mercado</h2>
         
         <h3>Proteínas de Suero</h3>
         <section class="product-grid">
             <article class="product-card">
-                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+1" alt="Proteína de Suero VORTEKS">
+                <img src="nombre_de_tu_imagen_1.png" alt="Proteína de Suero VORTEKS">
                 <h3>Proteína de Suero Premium</h3>
                 <p class="price">$50.000</p>
                 <a href="#" class="btn-buy">Añadir al carrito</a>
             </article>
             <article class="product-card">
-                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+2" alt="Proteína de Suero Isolatada VORTEKS">
+                <img src="nombre_de_tu_imagen_2.png" alt="Proteína de Suero Isolatada VORTEKS">
                 <h3>Proteína de Suero Isolada</h3>
                 <p class="price">$65.000</p>
                 <a href="#" class="btn-buy">Añadir al carrito</a>
             </article>
             <article class="product-card">
-                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+3" alt="Proteína de Suero Sabor Chocolate VORTEKS">
+                <img src="nombre_de_tu_imagen_3.png" alt="Proteína de Suero Sabor Chocolate VORTEKS">
                 <h3>Proteína de Suero Chocolate</h3>
                 <p class="price">$55.000</p>
                 <a href="#" class="btn-buy">Añadir al carrito</a>
@@ -309,15 +307,31 @@
         <h3>Proteínas Veganas</h3>
         <section class="product-grid">
             <article class="product-card">
-                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+Vegana+1" alt="Proteína Vegana de Arroz">
+                <img src="nombre_de_tu_imagen_4.png" alt="Proteína Vegana de Arroz">
                 <h3>Proteína Vegana de Arroz</h3>
                 <p class="price">$48.000</p>
                 <a href="#" class="btn-buy">Añadir al carrito</a>
             </article>
             <article class="product-card">
-                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+Vegana+2" alt="Proteína Vegana de Guisante">
+                <img src="nombre_de_tu_imagen_5.png" alt="Proteína Vegana de Guisante">
                 <h3>Proteína Vegana de Guisante</h3>
                 <p class="price">$49.000</p>
+                <a href="#" class="btn-buy">Añadir al carrito</a>
+            </article>
+        </section>
+
+        <h3>Caseínas</h3>
+        <section class="product-grid">
+            <article class="product-card">
+                <img src="nombre_de_tu_imagen_6.png" alt="Caseína Micelar VORTEKS">
+                <h3>Caseína Micelar Avanzada</h3>
+                <p class="price">$60.000</p>
+                <a href="#" class="btn-buy">Añadir al carrito</a>
+            </article>
+            <article class="product-card">
+                <img src="nombre_de_tu_imagen_7.png" alt="Caseína con Probióticos VORTEKS">
+                <h3>Caseína con Probióticos</h3>
+                <p class="price">$62.000</p>
                 <a href="#" class="btn-buy">Añadir al carrito</a>
             </article>
         </section>
@@ -325,16 +339,20 @@
         <section class="benefits-section">
             <h2>Beneficios de la Proteína</h2>
             <div class="benefit-item" onclick="toggleBenefit(this)">
-                <h3>Aumento de Masa Muscular</h3>
-                <p>La proteína es esencial para la reparación y el crecimiento de los tejidos musculares, especialmente después del ejercicio.</p>
+                <h3>Aumento de Masa Muscular y Reparación</h3>
+                <p>La proteína es la base para la construcción muscular. Cuando haces ejercicio, tus músculos sufren microdesgarros que la proteína ayuda a reparar, haciéndolos más fuertes y grandes. Es crucial consumirla después de entrenar para maximizar este proceso de recuperación.</p>
             </div>
             <div class="benefit-item" onclick="toggleBenefit(this)">
-                <h3>Recuperación Rápida</h3>
-                <p>Consumir proteína después de entrenar ayuda a reducir el daño muscular y acelera el proceso de recuperación.</p>
+                <h3>Control de Peso y Saciedad</h3>
+                <p>Una dieta rica en proteínas aumenta la sensación de saciedad, lo que reduce los antojos y la ingesta calórica general. Esto es muy útil si buscas mantener o perder peso, ya que te ayuda a sentirte lleno por más tiempo y a evitar picar entre comidas.</p>
             </div>
             <div class="benefit-item" onclick="toggleBenefit(this)">
-                <h3>Pérdida de Peso</h3>
-                <p>La proteína aumenta la sensación de saciedad, lo que ayuda a controlar el apetito y reducir la ingesta calórica.</p>
+                <h3>Mejora la Recuperación y el Rendimiento</h3>
+                <p>Además de la reparación muscular, la proteína ayuda a reponer los aminoácidos perdidos durante el entrenamiento intenso. Esto no solo acelera la recuperación, sino que también te prepara para la próxima sesión de ejercicio, mejorando tu rendimiento a largo plazo.</p>
+            </div>
+            <div class="benefit-item" onclick="toggleBenefit(this)">
+                <h3>Fortalece el Sistema Inmunológico</h3>
+                <p>Las proteínas son fundamentales para producir anticuerpos y otras moléculas del sistema inmune que defienden el cuerpo contra enfermedades. Una ingesta adecuada de proteínas es vital para mantener tus defensas altas, especialmente si llevas un estilo de vida activo.</p>
             </div>
         </section>
     </main>
