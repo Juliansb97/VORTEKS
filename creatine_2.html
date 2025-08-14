@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proteínas - Suplementos Deportivos</title>
+    <title>Proteínas - VORTEKS</title>
 
     <style>
         /* ----------------------------------------------------- */
@@ -19,13 +19,13 @@
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #1a1a1a; /* Fondo oscuro */
+            color: #f0f0f0; /* Color de texto claro */
         }
 
         a {
             text-decoration: none;
-            color: #333;
+            color: #f0f0f0;
         }
 
         ul {
@@ -38,18 +38,18 @@
         /* ----------------------------------------------------- */
 
         .main-header {
-            background-color: #fff;
+            background-color: #222; /* Fondo de la cabecera más oscuro */
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
 
         .logo a {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #007bff;
+            color: #00bcd4; /* Un color llamativo para el logo */
         }
 
         .main-nav ul {
@@ -68,16 +68,17 @@
         }
 
         .main-nav ul li a:hover {
-            color: #007bff;
+            color: #00bcd4;
         }
 
+        /* Oculta el menú desplegable por defecto */
         .dropdown-menu {
             display: none;
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #222;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             min-width: 150px;
             z-index: 10;
         }
@@ -88,9 +89,14 @@
 
         .dropdown-menu a {
             padding: 0.5rem 1rem;
-            color: #555;
+            color: #f0f0f0;
         }
 
+        .dropdown-menu a:hover {
+            background-color: #333;
+        }
+
+        /* Muestra el menú desplegable al pasar el cursor */
         .main-nav ul li.dropdown:hover .dropdown-menu {
             display: block;
         }
@@ -114,21 +120,22 @@
             text-align: center;
             margin-bottom: 2rem;
             font-size: 2.5rem;
-            color: #007bff;
+            color: #00bcd4;
         }
 
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem; /* Espacio para la próxima sección */
         }
 
         .product-card {
-            background-color: #fff;
+            background-color: #2a2a2a; /* Fondo de tarjeta oscuro */
             padding: 1.5rem;
             text-align: center;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
 
@@ -150,21 +157,65 @@
 
         .product-card .price {
             font-size: 1.5rem;
-            color: #28a745;
+            color: #4CAF50; /* Color verde para el precio */
             font-weight: bold;
             margin-bottom: 1rem;
         }
 
         .btn-buy {
-            background-color: #007bff;
-            color: #fff;
+            background-color: #00bcd4;
+            color: #1a1a1a;
             padding: 0.7rem 1.5rem;
             border-radius: 50px;
+            font-weight: bold;
             transition: background-color 0.3s ease;
         }
 
         .btn-buy:hover {
-            background-color: #0056b3;
+            background-color: #008ba3;
+        }
+
+
+        /* ----------------------------------------------------- */
+        /* --- Estilos para la Sección de Beneficios (Interactiva) --- */
+        /* ----------------------------------------------------- */
+
+        .benefits-section {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .benefits-section h2 {
+            margin-bottom: 1.5rem;
+            color: #00bcd4;
+        }
+
+        .benefit-item {
+            margin-bottom: 1rem;
+            background-color: #333;
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer; /* Muestra que es un elemento interactivo */
+            transition: background-color 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background-color: #444;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.2rem;
+        }
+
+        .benefit-item p {
+            display: none; /* Ocultamos el texto de beneficios por defecto */
+            margin-top: 0.5rem;
+        }
+
+        .benefit-item.active p {
+            display: block; /* Mostramos el texto cuando el elemento tiene la clase 'active' */
         }
 
 
@@ -175,8 +226,8 @@
         footer {
             text-align: center;
             padding: 1rem;
-            background-color: #333;
-            color: #fff;
+            background-color: #222;
+            color: #f0f0f0;
             margin-top: 2rem;
         }
     </style>
@@ -213,26 +264,72 @@
     <main class="main-content">
         <h2 class="page-title">Proteínas</h2>
         
+        <h3>Proteínas de Suero</h3>
         <section class="product-grid">
             <article class="product-card">
-                <img src="https://via.placeholder.com/250x250" alt="Imagen de Proteína de Suero">
-                <h3>Proteína de Suero Ultra Pura</h3>
+                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+1" alt="Proteína de Suero VORTEKS">
+                <h3>Proteína de Suero Premium</h3>
                 <p class="price">$50.000</p>
                 <a href="#" class="btn-buy">Añadir al carrito</a>
             </article>
-
             <article class="product-card">
-                <img src="https://via.placeholder.com/250x250" alt="Imagen de Proteína de Caseína">
-                <h3>Proteína de Caseína Noche</h3>
-                <p class="price">$45.000</p>
+                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+2" alt="Proteína de Suero Isolatada VORTEKS">
+                <h3>Proteína de Suero Isolada</h3>
+                <p class="price">$65.000</p>
                 <a href="#" class="btn-buy">Añadir al carrito</a>
             </article>
+            <article class="product-card">
+                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+3" alt="Proteína de Suero Sabor Chocolate VORTEKS">
+                <h3>Proteína de Suero Chocolate</h3>
+                <p class="price">$55.000</p>
+                <a href="#" class="btn-buy">Añadir al carrito</a>
+            </article>
+        </section>
+
+        <h3>Proteínas Veganas</h3>
+        <section class="product-grid">
+            <article class="product-card">
+                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+Vegana+1" alt="Proteína Vegana de Arroz">
+                <h3>Proteína Vegana de Arroz</h3>
+                <p class="price">$48.000</p>
+                <a href="#" class="btn-buy">Añadir al carrito</a>
+            </article>
+            <article class="product-card">
+                <img src="https://via.placeholder.com/250x250/2c3e50/ecf0f1?text=Proteina+Vegana+2" alt="Proteína Vegana de Guisante">
+                <h3>Proteína Vegana de Guisante</h3>
+                <p class="price">$49.000</p>
+                <a href="#" class="btn-buy">Añadir al carrito</a>
+            </article>
+        </section>
+
+        <section class="benefits-section">
+            <h2>Beneficios de la Proteína</h2>
+            <div class="benefit-item" onclick="toggleBenefit(this)">
+                <h3>Aumento de Masa Muscular</h3>
+                <p>La proteína es esencial para la reparación y el crecimiento de los tejidos musculares, especialmente después del ejercicio.</p>
+            </div>
+            <div class="benefit-item" onclick="toggleBenefit(this)">
+                <h3>Recuperación Rápida</h3>
+                <p>Consumir proteína después de entrenar ayuda a reducir el daño muscular y acelera el proceso de recuperación.</p>
+            </div>
+            <div class="benefit-item" onclick="toggleBenefit(this)">
+                <h3>Pérdida de Peso</h3>
+                <p>La proteína aumenta la sensación de saciedad, lo que ayuda a controlar el apetito y reducir la ingesta calórica.</p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 GymSupps. Todos los derechos reservados.</p>
+        <p>&copy; 2025 VORTEKS. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        // Función para mostrar/ocultar el texto de beneficios
+        function toggleBenefit(element) {
+            // Alterna la clase 'active' en el elemento que se ha clicado
+            element.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
