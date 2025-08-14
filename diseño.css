@@ -1,0 +1,180 @@
+/* ----------------------------------------------------- */
+/* --- Estilos Generales y Reseteo --- */
+/* ----------------------------------------------------- */
+
+/* Esto elimina los márgenes y rellenos por defecto del navegador para empezar de cero */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif; /* Elegimos una fuente legible */
+    line-height: 1.6; /* Espaciado entre líneas para una mejor lectura */
+    background-color: #f4f4f4; /* Un color de fondo suave */
+    color: #333; /* Color de texto principal */
+}
+
+/* Estilos para los enlaces */
+a {
+    text-decoration: none; /* Quitamos el subrayado por defecto de los enlaces */
+    color: #333;
+}
+
+ul {
+    list-style: none; /* Quitamos los puntos de las listas */
+}
+
+
+/* ----------------------------------------------------- */
+/* --- Estilos para la Cabecera (Header) --- */
+/* ----------------------------------------------------- */
+
+.main-header {
+    background-color: #fff; /* Fondo blanco */
+    padding: 1rem 2rem; /* Espacio interno superior/inferior y lateral */
+    display: flex; /* Usamos Flexbox para alinear elementos */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    align-items: center; /* Centra verticalmente los elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+}
+
+.logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007bff; /* Color llamativo para el logo */
+}
+
+/* Estilos para el menú de navegación */
+.main-nav ul {
+    display: flex; /* Alinea los elementos del menú en una fila */
+}
+
+.main-nav ul li {
+    position: relative; /* Es necesario para que el menú desplegable se posicione correctamente */
+    padding: 0 1rem;
+}
+
+.main-nav ul li a {
+    font-weight: bold;
+    padding: 1rem 0; /* Espacio para que el enlace sea más fácil de clicar */
+    display: block; /* Para que el padding funcione en todo el área del enlace */
+}
+
+.main-nav ul li a:hover {
+    color: #007bff; /* Cambia el color al pasar el cursor */
+}
+
+/* Estilos para el menú desplegable (dropdown) */
+.dropdown-menu {
+    display: none; /* Por defecto, el menú desplegable está oculto */
+    position: absolute;
+    top: 100%; /* Lo coloca debajo del enlace "Productos" */
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    z-index: 10; /* Asegura que el menú esté por encima de otros elementos */
+}
+
+.dropdown-menu li {
+    padding: 0; /* Quitamos el padding del li para un mejor diseño */
+}
+
+.dropdown-menu a {
+    padding: 0.5rem 1rem; /* Espaciado dentro de los enlaces del menú desplegable */
+    color: #555;
+}
+
+/* Esto muestra el menú desplegable cuando el usuario pasa el cursor por el enlace "Productos" */
+.main-nav ul li.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Estilos para el ícono del carrito */
+.cart-icon {
+    font-size: 1.5rem;
+}
+
+
+/* ----------------------------------------------------- */
+/* --- Estilos para el Contenido Principal y Productos --- */
+/* ----------------------------------------------------- */
+
+.main-content {
+    padding: 2rem;
+    max-width: 1200px; /* Ancho máximo para el contenido */
+    margin: 0 auto; /* Centra el contenido en la página */
+}
+
+.page-title {
+    text-align: center; /* Centra el título de la página */
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: #007bff;
+}
+
+.product-grid {
+    display: grid; /* Usamos CSS Grid para crear un diseño de cuadrícula */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Crea columnas flexibles */
+    gap: 2rem; /* Espacio entre las tarjetas de productos */
+}
+
+.product-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease; /* Efecto de transición suave */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Efecto de "levantar" la tarjeta al pasar el cursor */
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.product-card .price {
+    font-size: 1.5rem;
+    color: #28a745; /* Color verde para el precio */
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.btn-buy {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-buy:hover {
+    background-color: #0056b3;
+}
+
+
+/* ----------------------------------------------------- */
+/* --- Estilos para el Pie de Página (Footer) --- */
+/* ----------------------------------------------------- */
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+    margin-top: 2rem;
+}
