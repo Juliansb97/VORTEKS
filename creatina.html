@@ -3,67 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creatinas - VORTEꓘS</title>
+  <title>Creatinas - VORTEKS</title>
   <link rel="icon" type="image/png" href="LOGO.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fuente similar al logo -->
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: 'Poppins', sans-serif; }
+    body { font-family: 'Alfa Slab One', cursive; background-color: #000; }
+    .titulo-logo {
+      color: #f8e3b0; /* color crema del logo */
+      text-shadow: 2px 2px 0 #7a0000, -2px -2px 0 #7a0000; /* contorno rojo */
+    }
+    .precio {
+      color: #00ff7f; /* verde brillante para el precio */
+    }
+    .producto-card {
+      background-color: #111;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    .producto-card:hover {
+      border-color: #f8e3b0;
+      transform: scale(1.02);
+    }
   </style>
+
   <script defer src="carrito.js"></script>
 </head>
-<body class="bg-black text-white font-sans">
+<body class="text-white">
 
-  <!-- Header -->
-  <header class="flex items-center justify-between p-4 border-b border-gray-800">
+  <!-- Encabezado -->
+  <header class="flex flex-col items-center justify-center p-6 border-b border-gray-800">
     <a href="index.html">
-      <img src="LOGO.png" alt="Logo VORTEKS" class="w-24 h-24 hover:opacity-80">
+      <img src="LOGO.png" alt="Logo VORTEKS" class="w-48 h-48 mb-2 hover:opacity-90 transition">
     </a>
-    <h1 class="text-2xl font-bold text-yellow-400">Creatinas VORTEꓘS</h1>
+    <h1 class="titulo-logo text-4xl">Creatinas VORTEKS</h1>
   </header>
 
   <!-- Imagen promocional -->
   <section class="p-6 flex justify-center">
-    <img src="HISTORIETA1.png" alt="Promoción Creatina VORTEKS" class="max-w-full md:max-w-3xl rounded-lg shadow-lg">
+    <img src="HISTORIETA1.png" alt="Promoción Creatina VORTEKS" class="max-w-full md:max-w-4xl rounded-lg shadow-lg">
   </section>
 
   <!-- Título -->
-  <section class="p-6">
-    <h2 class="text-3xl font-bold text-yellow-300 mb-4">Creatinas disponibles</h2>
-    <p class="text-gray-400 mb-6">Apoya tu rendimiento y recuperación muscular con nuestras creatinas de alta calidad.</p>
+  <section class="p-6 text-center">
+    <h2 class="titulo-logo text-3xl mb-4">Creatinas disponibles</h2>
+    <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+      Apoya tu rendimiento y recuperación muscular con nuestras creatinas de alta calidad.
+    </p>
 
     <!-- Productos -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-gray-900 p-4 rounded-xl shadow hover:shadow-yellow-400 transition">
-        <div class="w-full h-48 overflow-hidden flex justify-center items-center mb-2 rounded-lg">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <div class="producto-card p-4 rounded-xl text-center">
+        <div class="w-full h-52 flex justify-center items-center mb-4 overflow-hidden rounded-lg">
           <img src="FOTOCREA1.png" alt="Creatina Monohidrato 100% Pura" class="h-full object-contain">
         </div>
-        <h3 class="text-xl font-semibold text-yellow-400">Creatina Monohidrato 100% Pura</h3>
+        <h3 class="titulo-logo text-xl mb-2">Creatina Monohidrato 100% Pura</h3>
         <p class="text-gray-300">Excelente para aumentar tu rendimiento y fuerza.</p>
-        <p class="text-green-400 font-bold mt-2">$150.000 COP</p>
-        <button onclick="agregarAlCarrito('Creatina Monohidrato 100% Pura', 150000, 'FOTOCREA1.png')" class="mt-3 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
+        <p class="precio font-bold mt-3">$150.000 COP</p>
+        <button onclick="agregarAlCarrito('Creatina Monohidrato 100% Pura', 150000, 'FOTOCREA1.png')" class="mt-4 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
       </div>
 
-      <div class="bg-gray-900 p-4 rounded-xl shadow hover:shadow-yellow-400 transition">
-        <img src="creatina2.png" alt="Creatina Micronizada 300g" class="w-full h-48 object-cover rounded-lg mb-2">
-        <h3 class="text-xl font-semibold text-yellow-400">Creatina Micronizada 300g</h3>
+      <div class="producto-card p-4 rounded-xl text-center">
+        <div class="w-full h-52 flex justify-center items-center mb-4 overflow-hidden rounded-lg">
+          <img src="creatina2.png" alt="Creatina Micronizada 300g" class="h-full object-contain">
+        </div>
+        <h3 class="titulo-logo text-xl mb-2">Creatina Micronizada 300g</h3>
         <p class="text-gray-300">Textura más fina, fácil de disolver, ideal para atletas exigentes.</p>
-        <p class="text-green-400 font-bold mt-2">$130.000 COP</p>
-        <button onclick="agregarAlCarrito('Creatina Micronizada 300g', 130000, 'creatina2.png')" class="mt-3 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
+        <p class="precio font-bold mt-3">$130.000 COP</p>
+        <button onclick="agregarAlCarrito('Creatina Micronizada 300g', 130000, 'creatina2.png')" class="mt-4 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
       </div>
 
-      <div class="bg-gray-900 p-4 rounded-xl shadow hover:shadow-yellow-400 transition">
-        <img src="creatina3.png" alt="Creatina con Beta-Alanina" class="w-full h-48 object-cover rounded-lg mb-2">
-        <h3 class="text-xl font-semibold text-yellow-400">Creatina con Beta-Alanina</h3>
+      <div class="producto-card p-4 rounded-xl text-center">
+        <div class="w-full h-52 flex justify-center items-center mb-4 overflow-hidden rounded-lg">
+          <img src="creatina3.png" alt="Creatina con Beta-Alanina" class="h-full object-contain">
+        </div>
+        <h3 class="titulo-logo text-xl mb-2">Creatina con Beta-Alanina</h3>
         <p class="text-gray-300">Mejora el rendimiento y retrasa la fatiga muscular.</p>
-        <p class="text-green-400 font-bold mt-2">$145.000 COP</p>
-        <button onclick="agregarAlCarrito('Creatina con Beta-Alanina', 145000, 'creatina3.png')" class="mt-3 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
+        <p class="precio font-bold mt-3">$145.000 COP</p>
+        <button onclick="agregarAlCarrito('Creatina con Beta-Alanina', 145000, 'creatina3.png')" class="mt-4 w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 transition">Comprar</button>
       </div>
+
     </div>
   </section>
 
   <!-- Volver al inicio -->
   <section class="p-6 text-center">
-    <a href="index.html" class="text-yellow-400 hover:underline">← Volver al inicio</a>
+    <a href="index.html" class="titulo-logo hover:underline">← Volver al inicio</a>
   </section>
 
   <!-- Botón Carrito -->
@@ -73,7 +102,7 @@
 
   <!-- Carrito flotante -->
   <div id="carrito" class="hidden fixed top-20 right-6 bg-gray-900 text-white w-80 p-4 rounded-xl shadow-lg z-50">
-    <h3 class="text-xl font-bold mb-2 text-yellow-300">Carrito de Compras</h3>
+    <h3 class="titulo-logo text-xl mb-3">Carrito de Compras</h3>
     <div id="carrito-items" class="mb-2 max-h-60 overflow-y-auto"></div>
     <div class="flex justify-between text-yellow-400 font-semibold mb-2">
       <span>Total:</span>
@@ -84,7 +113,7 @@
 
   <!-- Footer -->
   <footer class="p-4 text-center text-gray-500 text-sm border-t border-gray-800">
-    © 2025 VORTEꓘS. Todos los derechos reservados.
+    © 2025 VORTEKS. Todos los derechos reservados.
   </footer>
 
 </body>
