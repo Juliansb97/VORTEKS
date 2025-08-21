@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Las mejores proteínas del mercado - VORTEKS</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         /* ----------------------------------------------------- */
         /* --- Estilos Generales y Reseteo --- */
@@ -17,7 +21,7 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif; /* Usando la nueva tipografía */
             line-height: 1.6;
             background-color: #1a1a1a;
             color: #f0f0f0;
@@ -237,7 +241,7 @@
             right: 1rem;
             cursor: pointer;
         }
-        
+
         /* Botón para remover item del carrito */
         .remove-item-btn {
             background: none;
@@ -309,7 +313,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
-            min-height: 48px; /* Para mantener el mismo alto que el botón original */
+            min-height: 48px;
         }
         
         .product-card .add-to-cart-btn,
@@ -348,7 +352,8 @@
             text-align: center;
             border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border 0.3s ease; /* Transición para el borde */
+            border: 2px solid transparent; /* Borde transparente por defecto */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -356,6 +361,7 @@
 
         .product-card:hover {
             transform: translateY(-5px);
+            border: 2px solid #ffc107; /* Borde amarillo al pasar el cursor */
         }
 
         .product-card img {
@@ -766,7 +772,6 @@
                 renderCartItem(product);
             }
 
-            // Cambiar el botón "Añadir al carrito" por el control de cantidad
             const buttonContainer = productCard.querySelector('.button-container');
             buttonContainer.innerHTML = createQuantityControl(product.id, product.quantity);
 
