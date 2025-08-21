@@ -100,25 +100,25 @@
             background-color: #333;
         }
 
-        /* Contenedor del icono del carrito y contador */
+        /* Contenedor del icono del carrito */
         .cart-icon-container {
             position: relative;
             cursor: pointer;
         }
-        
+
         /* Estilos para el icono del carrito */
         .cart-icon {
             font-size: 1.5rem;
             color: #f0f0f0;
-            transition: color 0.3s ease; /* Transición para el cambio de color */
+            transition: color 0.3s ease;
         }
 
-        /* Estilo para el icono del carrito cuando se agrega un producto */
+        /* Estilo para el icono del carrito cuando tiene items */
         .cart-icon.has-items {
-            color: #ffc107; /* Cambia a amarillo cuando tiene productos */
-            animation: pulse 0.5s ease-in-out; /* Animación de pulso */
+            color: #ffc107;
+            animation: pulse 0.5s ease-in-out;
         }
-        
+
         /* Animación de pulso */
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -126,7 +126,7 @@
             100% { transform: scale(1); }
         }
 
-        /* Estilos del botón de hamburguesa (oculto por defecto) */
+        /* Estilos del botón de hamburguesa */
         .hamburger-menu {
             display: none;
             cursor: pointer;
@@ -140,10 +140,10 @@
         /* ----------------------------------------------------- */
 
         .shopping-cart {
-            display: none; /* Oculto por defecto */
+            display: none;
             position: fixed;
             top: 0;
-            right: -400px; /* Inicia fuera de la pantalla */
+            right: -400px;
             width: 350px;
             height: 100%;
             background-color: #2a2a2a;
@@ -151,11 +151,11 @@
             padding: 2rem 1rem;
             z-index: 20;
             transition: right 0.5s ease-in-out;
-            overflow-y: auto; /* Permite desplazamiento si el contenido es largo */
+            overflow-y: auto;
         }
 
         .shopping-cart.active {
-            right: 0; /* Desliza el carrito hacia adentro */
+            right: 0;
         }
 
         .shopping-cart h2 {
@@ -175,6 +175,7 @@
             margin-bottom: 1rem;
             padding: 0.5rem;
             border-bottom: 1px solid #444;
+            position: relative;
         }
 
         .cart-item img {
@@ -236,6 +237,86 @@
             right: 1rem;
             cursor: pointer;
         }
+        
+        /* Botón para remover item del carrito */
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: #f0f0f0;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            cursor: pointer;
+        }
+
+
+        /* ----------------------------------------------------- */
+        /* --- Estilos para el Control de Cantidad --- */
+        /* ----------------------------------------------------- */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .quantity-control button {
+            background: none;
+            color: #ffc107;
+            border: 1px solid #ffc107;
+            padding: 0.3rem 0.6rem;
+            margin: 0 0.3rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .quantity-control button:hover {
+            background-color: #ffc107;
+            color: #1a1a1a;
+        }
+
+        .quantity-control span {
+            color: #f0f0f0;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 1.5rem;
+            text-align: center;
+        }
+
+        .add-to-cart-btn {
+            background-color: #ffc107;
+            color: #1a1a1a;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #e6a800;
+        }
+
+        .product-card .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            min-height: 48px; /* Para mantener el mismo alto que el botón original */
+        }
+        
+        .product-card .add-to-cart-btn,
+        .product-card .quantity-control {
+            width: 100%;
+        }
+
 
         /* ----------------------------------------------------- */
         /* --- Estilos para el Contenido Principal y Productos --- */
@@ -268,6 +349,9 @@
             border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-card:hover {
@@ -310,22 +394,6 @@
             color: #1a1a1a;
         }
 
-        .btn-buy {
-            background-color: #ffc107;
-            color: #1a1a1a;
-            padding: 0.7rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: block;
-        }
-
-        .btn-buy:hover {
-            background-color: #e6a800;
-        }
-
         .product-description {
             display: none;
             text-align: left;
@@ -363,7 +431,7 @@
             position: relative;
             text-align: left;
         }
-        
+
         .benefit-item:hover {
             background-color: #444;
         }
@@ -417,7 +485,7 @@
         /* ----------------------------------------------------- */
 
         @media (max-width: 768px) {
-            
+
             .main-nav {
                 display: none;
                 flex-direction: column;
@@ -429,7 +497,7 @@
                 padding: 1rem 0;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             }
-            
+
             .main-nav.active {
                 display: flex;
             }
@@ -445,7 +513,7 @@
                 width: 100%;
                 text-align: center;
             }
-            
+
             .main-nav ul li a {
                 padding: 1rem 0;
             }
@@ -459,7 +527,7 @@
                 justify-content: space-between;
                 align-items: center;
             }
-            
+
             .main-header .cart-icon {
                 margin-left: 0;
             }
@@ -469,21 +537,25 @@
             }
 
             .product-grid {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
             }
 
             .product-card {
                 margin-bottom: 1rem;
             }
-            
+
             .dropdown-menu {
                 position: static;
                 width: 100%;
                 box-shadow: none;
             }
-            
+
             .dropdown-menu.active {
                 display: block;
+            }
+
+            .product-card .button-container {
+                flex-direction: column;
             }
         }
     </style>
@@ -494,7 +566,7 @@
         <div class="logo">
             <a href="index.html"><h1>VORTEKS</h1></a>
         </div>
-        
+
         <div class="hamburger-menu" id="hamburger-btn">
             ☰
         </div>
@@ -515,7 +587,7 @@
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
-        
+
         <div class="cart-icon-container" id="cart-icon-container">
             <span class="cart-icon">🛒</span>
         </div>
@@ -534,7 +606,7 @@
 
     <main class="main-content">
         <h2 class="page-title">Las mejores proteínas del mercado</h2>
-        
+
         <h3>Proteínas de Suero</h3>
         <section class="product-grid">
             <article class="product-card" data-product-id="1" data-product-name="Proteína de Suero Premium" data-product-price="50000" data-product-img="nombre_de_tu_imagen_1.png">
@@ -542,7 +614,9 @@
                 <h3>Proteína de Suero Premium</h3>
                 <p class="price">$50.000</p>
                 <button class="btn-more" onclick="toggleDescription(this)">Ver más</button>
-                <button class="btn-buy" onclick="addToCart(this)">Añadir al carrito</button>
+                <div class="button-container">
+                    <button class="add-to-cart-btn" onclick="handleAddToCart(this)">Añadir al carrito</button>
+                </div>
                 <div class="product-description">
                     <p>La Proteína de Suero Premium VORTEKS es ideal para la recuperación post-entrenamiento. Su fórmula de rápida absorción entrega aminoácidos esenciales directamente a tus músculos, acelerando la reparación y el crecimiento. Contiene 25g de proteína por porción y está disponible en varios sabores deliciosos.</p>
                 </div>
@@ -552,7 +626,9 @@
                 <h3>Proteína de Suero Isolada</h3>
                 <p class="price">$65.000</p>
                 <button class="btn-more" onclick="toggleDescription(this)">Ver más</button>
-                <button class="btn-buy" onclick="addToCart(this)">Añadir al carrito</button>
+                <div class="button-container">
+                    <button class="add-to-cart-btn" onclick="handleAddToCart(this)">Añadir al carrito</button>
+                </div>
                 <div class="product-description">
                     <p>Nuestra Proteína de Suero Isolada es ultra pura y de rápida digestión. Es perfecta para quienes buscan una fuente de proteína con un contenido mínimo de carbohidratos, grasas y lactosa. Ideal para dietas estrictas y definición muscular. Cada porción contiene 27g de proteína.</p>
                 </div>
@@ -562,7 +638,9 @@
                 <h3>Proteína de Suero Chocolate</h3>
                 <p class="price">$55.000</p>
                 <button class="btn-more" onclick="toggleDescription(this)">Ver más</button>
-                <button class="btn-buy" onclick="addToCart(this)">Añadir al carrito</button>
+                <div class="button-container">
+                    <button class="add-to-cart-btn" onclick="handleAddToCart(this)">Añadir al carrito</button>
+                </div>
                 <div class="product-description">
                     <p>Disfruta del delicioso sabor a chocolate de nuestra proteína de suero mientras nutres tus músculos. Esta mezcla combina la calidad de la proteína de suero con un sabor inigualable. Es perfecta para batidos o para agregar a tus recetas favoritas.</p>
                 </div>
@@ -576,7 +654,9 @@
                 <h3>Proteína Vegana de Arroz</h3>
                 <p class="price">$48.000</p>
                 <button class="btn-more" onclick="toggleDescription(this)">Ver más</button>
-                <button class="btn-buy" onclick="addToCart(this)">Añadir al carrito</button>
+                <div class="button-container">
+                    <button class="add-to-cart-btn" onclick="handleAddToCart(this)">Añadir al carrito</button>
+                </div>
                 <div class="product-description">
                     <p>Nuestra Proteína de Arroz es una excelente alternativa para veganos y personas con intolerancia a la lactosa. Es una proteína completa que contiene todos los aminoácidos esenciales. De fácil digestión, es ideal para la recuperación y el mantenimiento muscular.</p>
                 </div>
@@ -586,7 +666,9 @@
                 <h3>Proteína Vegana de Guisante</h3>
                 <p class="price">$49.000</p>
                 <button class="btn-more" onclick="toggleDescription(this)">Ver más</button>
-                <button class="btn-buy" onclick="addToCart(this)">Añadir al carrito</button>
+                <div class="button-container">
+                    <button class="add-to-cart-btn" onclick="handleAddToCart(this)">Añadir al carrito</button>
+                </div>
                 <div class="product-description">
                     <p>La Proteína de Guisante VORTEKS es una fuente vegetal de alta calidad, rica en hierro y aminoácidos ramificados (BCAAs). Promueve el crecimiento muscular y es muy saciante, ayudando a controlar el apetito. Con un sabor neutro que se mezcla fácilmente.</p>
                 </div>
@@ -600,17 +682,20 @@
                 <h3>Caseína Micelar Avanzada</h3>
                 <p class="price">$60.000</p>
                 <button class="btn-more" onclick="toggleDescription(this)">Ver más</button>
-                <button class="btn-buy" onclick="addToCart(this)">Añadir al carrito</button>
+                <div class="button-container">
+                    <button class="add-to-cart-btn" onclick="handleAddToCart(this)">Añadir al carrito</button>
+                </div>
                 <div class="product-description">
                     <p>La Caseína Micelar es una proteína de digestión lenta. Es perfecta para tomar antes de dormir, ya que libera aminoácidos de forma sostenida durante varias horas, evitando el catabolismo muscular nocturno. Ideal para mantener tus músculos nutridos mientras descansas.</p>
                 </div>
             </article>
             <article class="product-card" data-product-id="7" data-product-name="Caseína con Probióticos" data-product-price="62000" data-product-img="nombre_de_tu_imagen_7.png">
-                <img src="nombre_de_tu_imagen_7.png" alt="Caseína con Probióticos VORTEKS">
                 <h3>Caseína con Probióticos</h3>
                 <p class="price">$62.000</p>
                 <button class="btn-more" onclick="toggleDescription(this)">Ver más</button>
-                <button class="btn-buy" onclick="addToCart(this)">Añadir al carrito</button>
+                <div class="button-container">
+                    <button class="add-to-cart-btn" onclick="handleAddToCart(this)">Añadir al carrito</button>
+                </div>
                 <div class="product-description">
                     <p>Esta caseína no solo te ofrece una nutrición prolongada, sino que también cuida de tu salud intestinal. Sus probióticos activos mejoran la digestión y la absorción de nutrientes, asegurando que tu cuerpo aproveche al máximo cada porción.</p>
                 </div>
@@ -643,19 +728,16 @@
     </footer>
 
     <script>
-        // Array para almacenar los productos en el carrito
         let cart = [];
 
-        // Función para el menú de beneficios
         function toggleBenefit(element) {
             element.classList.toggle('active');
         }
 
-        // Función para el botón "Ver más" de los productos
         function toggleDescription(button) {
             const productCard = button.closest('.product-card');
             const description = productCard.querySelector('.product-description');
-            
+
             if (description.style.display === 'block') {
                 description.style.display = 'none';
                 button.textContent = 'Ver más';
@@ -664,76 +746,139 @@
                 button.textContent = 'Ver menos';
             }
         }
-        
-        // Función para agregar un producto al carrito
-        function addToCart(button) {
-            // Obtenemos los datos del producto usando los atributos "data-"
+
+        function handleAddToCart(button) {
             const productCard = button.closest('.product-card');
             const product = {
                 id: productCard.dataset.productId,
                 name: productCard.dataset.productName,
                 price: parseInt(productCard.dataset.productPrice),
                 img: productCard.dataset.productImg,
-                quantity: 1
             };
 
-            // Verificamos si el producto ya está en el carrito
-            const existingProduct = cart.find(item => item.id === product.id);
+            const existingProductIndex = cart.findIndex(item => item.id === product.id);
 
-            if (existingProduct) {
-                // Si existe, solo incrementamos la cantidad
-                existingProduct.quantity++;
+            if (existingProductIndex !== -1) {
+                cart[existingProductIndex].quantity++;
             } else {
-                // Si no, lo agregamos como un nuevo producto
+                product.quantity = 1;
                 cart.push(product);
+                renderCartItem(product);
             }
 
-            // Actualizamos la interfaz del carrito y el ícono
-            updateCartUI();
+            // Cambiar el botón "Añadir al carrito" por el control de cantidad
+            const buttonContainer = productCard.querySelector('.button-container');
+            buttonContainer.innerHTML = createQuantityControl(product.id, product.quantity);
+
+            updateCartTotal();
             animateCartIcon();
         }
 
-        // Función para actualizar la interfaz del carrito
-        function updateCartUI() {
+        function increaseQuantity(productId) {
+            const productIndex = cart.findIndex(item => item.id === productId);
+            if (productIndex !== -1) {
+                cart[productIndex].quantity++;
+                updateCartItemDisplay(productId, cart[productIndex].quantity);
+                updateQuantityControl(productId, cart[productIndex].quantity);
+                updateCartTotal();
+            }
+        }
+
+        function decreaseQuantity(productId) {
+            const productIndex = cart.findIndex(item => item.id === productId);
+            if (productIndex !== -1) {
+                cart[productIndex].quantity--;
+                if (cart[productIndex].quantity <= 0) {
+                    removeProductFromCart(productId);
+                } else {
+                    updateCartItemDisplay(productId, cart[productIndex].quantity);
+                    updateQuantityControl(productId, cart[productIndex].quantity);
+                    updateCartTotal();
+                }
+            }
+        }
+
+        function removeProductFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
             const cartItemsContainer = document.getElementById('cart-items');
+            const itemToRemove = document.querySelector(`.cart-item-id-${productId}`);
+            if (itemToRemove) {
+                cartItemsContainer.removeChild(itemToRemove);
+            }
+            const productCard = document.querySelector(`.product-card[data-product-id="${productId}"]`);
+            if (productCard) {
+                const buttonContainer = productCard.querySelector('.button-container');
+                if (buttonContainer) {
+                    buttonContainer.innerHTML = `<button class="add-to-cart-btn" onclick="handleAddToCart(this)">Añadir al carrito</button>`;
+                }
+            }
+            updateCartTotal();
+        }
+
+        function updateCartItemDisplay(productId, quantity) {
+            const cartItem = document.querySelector(`.cart-item-id-${productId}`);
+            if (cartItem) {
+                const quantityElement = cartItem.querySelector('.item-details p');
+                const priceElement = cartItem.querySelector('.item-details .price');
+                const product = cart.find(item => item.id === productId);
+                if (product) {
+                    quantityElement.textContent = `Cantidad: ${quantity}`;
+                    priceElement.textContent = `$${(product.price * quantity).toLocaleString('es-CO')}`;
+                }
+            }
+        }
+
+        function updateQuantityControl(productId, quantity) {
+            const productCard = document.querySelector(`.product-card[data-product-id="${productId}"]`);
+            if (productCard) {
+                const controlContainer = productCard.querySelector('.button-container');
+                controlContainer.innerHTML = createQuantityControl(productId, quantity);
+            }
+        }
+
+        function createQuantityControl(productId, quantity) {
+            return `
+                <div class="quantity-control">
+                    <button onclick="decreaseQuantity('${productId}')">-</button>
+                    <span>${quantity}</span>
+                    <button onclick="increaseQuantity('${productId}')">+</button>
+                </div>
+            `;
+        }
+
+        function renderCartItem(product) {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item', `cart-item-id-${product.id}`);
+            itemElement.innerHTML = `
+                <img src="${product.img}" alt="${product.name}">
+                <div class="item-details">
+                    <h4>${product.name}</h4>
+                    <p>Cantidad: ${product.quantity}</p>
+                    <p class="price">$${(product.price * product.quantity).toLocaleString('es-CO')}</p>
+                </div>
+                <button class="remove-item-btn" onclick="removeProductFromCart('${product.id}')">×</button>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+        }
+
+        function updateCartTotal() {
             const cartTotalPrice = document.getElementById('cart-total-price');
             let total = 0;
-            
-            // Limpiamos el contenido actual del carrito
-            cartItemsContainer.innerHTML = '';
-
-            // Recorremos el array de productos en el carrito y los mostramos
             cart.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.classList.add('cart-item');
-                itemElement.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}">
-                    <div class="item-details">
-                        <h4>${item.name}</h4>
-                        <p>Cantidad: ${item.quantity}</p>
-                        <p class="price">$${(item.price * item.quantity).toLocaleString('es-CO')}</p>
-                    </div>
-                `;
-                cartItemsContainer.appendChild(itemElement);
                 total += item.price * item.quantity;
             });
-            
-            // Actualizamos el precio total
             cartTotalPrice.textContent = `$${total.toLocaleString('es-CO')}`;
         }
         
-        // Función para la animación del ícono del carrito
         function animateCartIcon() {
             const cartIcon = document.querySelector('.cart-icon');
-            cartIcon.classList.add('has-items'); // Agrega la clase para el color y la animación
-            
-            // Eliminamos la clase después de un corto tiempo para que la animación se pueda repetir
+            cartIcon.classList.add('has-items');
             setTimeout(() => {
                 cartIcon.classList.remove('has-items');
             }, 600);
         }
 
-        // Event Listeners para mostrar y ocultar el carrito
         document.addEventListener('DOMContentLoaded', function() {
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const navMenu = document.getElementById('main-nav');
@@ -743,14 +888,12 @@
             const shoppingCart = document.getElementById('shopping-cart');
             const closeCartBtn = document.getElementById('close-cart-btn');
 
-            // Abrir y cerrar el menú de hamburguesa
             hamburgerBtn.addEventListener('click', function(event) {
                 event.stopPropagation();
                 navMenu.classList.toggle('active');
                 productsDropdown.classList.remove('active');
             });
             
-            // Abrir y cerrar el menú desplegable de "Productos" en móviles
             if (window.innerWidth <= 768) {
                 productsLink.addEventListener('click', function(event) {
                     event.preventDefault(); 
@@ -759,7 +902,6 @@
                 });
             }
 
-            // Cerrar el menú desplegable si se hace clic fuera de él en móviles
             document.addEventListener('click', function(event) {
                 if (window.innerWidth <= 768) {
                      if (!productsLink.contains(event.target) && productsDropdown.classList.contains('active')) {
@@ -768,7 +910,6 @@
                 }
             });
             
-            // Mostrar y ocultar el carrito
             cartIconContainer.addEventListener('click', function() {
                 shoppingCart.classList.add('active');
             });
@@ -777,7 +918,6 @@
                 shoppingCart.classList.remove('active');
             });
 
-            // Evitar que el clic dentro del carrito lo cierre
             shoppingCart.addEventListener('click', function(event) {
                 event.stopPropagation();
             });
